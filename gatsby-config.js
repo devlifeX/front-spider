@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "My Gatsby Site",
+    siteUrl: "https://www.Toolsbox.tld",
+    title: "Toolsbox2",
   },
   plugins: [
     "gatsby-plugin-image",
