@@ -1,8 +1,8 @@
 import * as React from "react";
-
+import MainLayout from "../components/Layout";
 // markup
 const IndexPage = () => {
-  return <main>salam23</main>;
+  return <MainLayout>salam23</MainLayout>;
 };
 
 export default IndexPage;
