@@ -10,7 +10,6 @@ import {
   PostFromJson,
   BlogPostBySlugQuery,
 } from "./types";
-
 // Re-export types
 export * from "./types";
 

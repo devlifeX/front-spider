@@ -19,7 +19,7 @@ const Header = () => {
         <LayoutWidthContainer>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Tools
+              ابزار
             </Typography>
 
             <NavigationLinks />
