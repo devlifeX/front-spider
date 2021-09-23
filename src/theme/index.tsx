@@ -4,6 +4,7 @@ import {
   ThemeProvider as MuiThemeProvider,
   ThemeOptions,
 } from "@mui/material/styles";
+import { blue, pink } from "@mui/material/colors";
 
 import CssReset from "./CssReset";
 
@@ -20,13 +21,10 @@ declare module "@mui/material/styles" {
 
 // Materil UI Theme setup
 export const themeOptions: ThemeOptions = {
+  direction: "rtl",
   palette: {
-    primary: {
-      main: "#c23248",
-    },
-    secondary: {
-      main: "#fafafa",
-    },
+    primary: blue,
+    secondary: pink,
   },
   breakpoints: {
     values: {
