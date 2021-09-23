@@ -17,9 +17,9 @@ const Footer = () => {
       }}
     >
       <Stack justifyContent="center" alignItems="center">
-        <Typography variant="caption">Tools</Typography>
+        <Typography variant="caption">ابزار</Typography>
         <Typography mt={1} variant="caption">
-          2021
+          1400
         </Typography>
       </Stack>
     </Stack>

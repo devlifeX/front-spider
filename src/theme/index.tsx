@@ -7,11 +7,12 @@ import {
 import { blue, pink, grey } from "@mui/material/colors";
 
 import CssReset from "./CssReset";
-import CssBaseline from "@mui/material/CssBaseline";
 
-import DanaWoff from "../static/fonts/dana-fanum-regular.woff";
-import DanaWoff2 from "../static/fonts/dana-fanum-regular.woff2";
-import DanaEOT from "../static/fonts/dana-fanum-regular.eot";
+import "./fonts.css";
+
+import DanaWoff from "../../static/fonts/dana-fanum-regular.woff";
+import DanaWoff2 from "../../static/fonts/dana-fanum-regular.woff2";
+import DanaEOT from "../../static/fonts/dana-fanum-regular.eot";
 
 const dana = {
   fontFamily: "Dana",
@@ -39,6 +40,7 @@ const typography = {
     },
   },
 };
+
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {
     zero: true;
@@ -74,7 +76,7 @@ type ThemeProps = {
 const ThemeProvider = ({ children }: ThemeProps): JSX.Element => (
   <MuiThemeProvider theme={createTheme(themeOptions)}>
     <CssReset />
-    <CssBaseline />
+
     {children}
   </MuiThemeProvider>
 );

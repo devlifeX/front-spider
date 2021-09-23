@@ -35,13 +35,13 @@ const NavigationLinks = (): JSX.Element => {
         component={TabLink}
         value="/sitemap-extractor"
         to="/sitemap-extractor"
-        label="Sitemap"
+        label="نقشه‌سایت"
       />
       <Tab
         component={TabLink}
         value="/seo-checker"
         to="/seo-checker"
-        label="SEO Checker"
+        label="چک سئو"
       />
     </Tabs>
   );

@@ -156,6 +156,15 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
           },
         },
       }, */
+
+      {
+        resolve: "gatsby-plugin-web-font-loader",
+        options: {},
+      },
+      {
+        resolve: `gatsby-plugin-styled-components`,
+        options: {},
+      },
     ],
   };
 };
