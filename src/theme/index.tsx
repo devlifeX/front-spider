@@ -4,7 +4,7 @@ import {
   ThemeProvider as MuiThemeProvider,
   ThemeOptions,
 } from "@mui/material/styles";
-import { blue, pink } from "@mui/material/colors";
+import { blue, pink, grey } from "@mui/material/colors";
 
 import CssReset from "./CssReset";
 
@@ -23,8 +23,8 @@ declare module "@mui/material/styles" {
 export const themeOptions: ThemeOptions = {
   direction: "rtl",
   palette: {
-    primary: blue,
-    secondary: pink,
+    primary: { main: blue[500] },
+    secondary: { main: "#f8f9fa" },
   },
   breakpoints: {
     values: {

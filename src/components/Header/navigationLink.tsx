@@ -18,8 +18,8 @@ const TabLink = React.forwardRef(
 );
 
 const NavigationLinks = (): JSX.Element => {
-  const postPageMatch = useMatch("/");
-  const aboutPageMatch = useMatch("/about");
+  const postPageMatch = useMatch("/sitemap-extractor");
+  const aboutPageMatch = useMatch("/seo-checker");
 
   const getMatchUri = () => {
     if (aboutPageMatch) return aboutPageMatch.uri;
@@ -31,8 +31,18 @@ const NavigationLinks = (): JSX.Element => {
 
   return (
     <Tabs value={matchUri}>
-      <Tab component={TabLink} value="/" to="/" label="Posts" />
-      <Tab component={TabLink} value="/about" to="/about" label="About" />
+      <Tab
+        component={TabLink}
+        value="/sitemap-extractor"
+        to="/sitemap-extractor"
+        label="Sitemap"
+      />
+      <Tab
+        component={TabLink}
+        value="/seo-checker"
+        to="/seo-checker"
+        label="SEO Checker"
+      />
     </Tabs>
   );
 };
