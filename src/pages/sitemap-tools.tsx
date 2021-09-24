@@ -3,7 +3,8 @@ import MainLayout from "../components/Layout";
 import { SearchInput } from "../components/SearchInput";
 import { AlertProps } from "../types";
 import { Box, Typography, Alert } from "@mui/material";
-// markup
+
+import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
 const SitemapExtractor = () => {
   const [alert, setAlert] = useState<AlertProps>({
     open: false,
@@ -14,7 +15,7 @@ const SitemapExtractor = () => {
 
   const [options, setOptions] = useState({
     buttonShow: true,
-    childrenShow: false,
+    childrenShow: true,
   });
   const onClickSearch = () => {
     setAlert({
@@ -23,12 +24,7 @@ const SitemapExtractor = () => {
     });
   };
 
-  const onClickOptions = () => {
-    setOptions({
-      buttonShow: true,
-      childrenShow: true,
-    });
-  };
+  const onClickOptions = () => {};
 
   return (
     <MainLayout>
@@ -38,12 +34,13 @@ const SitemapExtractor = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          width: "100%",
         }}
       >
         <SearchInput
           fns={{ text, setText, onClickSearch, options, onClickOptions }}
         >
-          <div></div>
+          <SearchInputOptions />
         </SearchInput>
         {alert.open && <Alert severity={alert.type}>{alert.message}</Alert>}
         <Typography

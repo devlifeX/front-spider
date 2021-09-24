@@ -20,10 +20,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
     <Paper
       component="div"
       sx={{
-        m: " 0 0 40px 0",
+        m: "0 0 40px 0",
         display: "flex",
         alignItems: "center",
-        width: { lg: "50%", sm: "100%" },
+        width: { lg: "50%", xs: "100%" },
         direction: "ltr",
       }}
     >
@@ -53,14 +53,14 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       {options.buttonShow && (
         <>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton
+          {/* <IconButton
             color="primary"
             sx={{ p: "10px" }}
             aria-label="directions"
             onClick={onClickOptions}
           >
             <SettingsIcon />
-          </IconButton>
+          </IconButton> */}
           {options.childrenShow && children}
         </>
       )}
