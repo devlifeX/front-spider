@@ -7,6 +7,9 @@
   "keywords": [
     "gatsby"
   ],
+  "workspaces": [
+    "src"
+  ],
   "scripts": {
     "develop": "GATSBY_EXPERIMENTAL_FAST_DEV=true  gatsby develop",
     "start": "gatsby develop",

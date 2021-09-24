@@ -11,14 +11,22 @@ const SitemapExtractor = () => {
     message: "",
   });
   const [text, setText] = useState("");
+
   const [options, setOptions] = useState({
-    show: true,
-    cb: () => {},
+    buttonShow: true,
+    childrenShow: false,
   });
   const onClickSearch = () => {
     setAlert({
       open: true,
       message: text,
+    });
+  };
+
+  const onClickOptions = () => {
+    setOptions({
+      buttonShow: true,
+      childrenShow: true,
     });
   };
 
@@ -32,7 +40,11 @@ const SitemapExtractor = () => {
           alignItems: "center",
         }}
       >
-        <SearchInput fns={{ text, setText, onClickSearch, options }} />
+        <SearchInput
+          fns={{ text, setText, onClickSearch, options, onClickOptions }}
+        >
+          <div>salalam</div>
+        </SearchInput>
         {alert.open && <Alert severity={alert.type}>{alert.message}</Alert>}
         <Typography
           variant="h5"

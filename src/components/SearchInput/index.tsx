@@ -10,8 +10,12 @@ type SearchInputProps = {
   fns: any;
 };
 
-export const SearchInput = ({ fns }: SearchInputProps): JSX.Element => {
-  const { text, setText, onClickSearch, options } = fns;
+export const SearchInput: React.FC<SearchInputProps> = ({
+  fns,
+  children,
+}): JSX.Element => {
+  const { text, setText, onClickSearch, options, onClickOptions } = fns;
+
   return (
     <Paper
       component="div"
@@ -44,17 +48,18 @@ export const SearchInput = ({ fns }: SearchInputProps): JSX.Element => {
       >
         <SearchIcon />
       </IconButton>
-      {options.show && (
+      {options.buttonShow && (
         <>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
           <IconButton
             color="primary"
             sx={{ p: "10px" }}
             aria-label="directions"
-            onClick={options.cb}
+            onClick={onClickOptions}
           >
             <SettingsIcon />
           </IconButton>
+          {options.childrenShow && children}
         </>
       )}
     </Paper>
