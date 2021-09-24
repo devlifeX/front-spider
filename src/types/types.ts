@@ -1,4 +1,5 @@
 import { ImageDataLike } from "gatsby-plugin-image";
+import { AlertColor } from "@mui/material";
 
 export type BlogPostBySlugQuery = {
   mdx?: MdxNode;
@@ -124,3 +125,9 @@ export type PostPlaceholder = {
 };
 
 export type FeedList = Array<Post | PostPlaceholder>;
+
+export interface AlertProps {
+  open: boolean;
+  type?: AlertColor;
+  message: string;
+}

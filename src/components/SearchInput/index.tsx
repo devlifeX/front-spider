@@ -1,15 +1,20 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
-export default function SearchInput() {
+
+type SearchInputProps = {
+  fns: any;
+};
+
+export const SearchInput = ({ fns }: SearchInputProps): JSX.Element => {
+  const { text, setText, onClickSearch, options } = fns;
   return (
     <Paper
-      component="form"
+      component="div"
       sx={{
         m: " 0 0 40px 0",
         display: "flex",
@@ -28,14 +33,30 @@ export default function SearchInput() {
         }}
         placeholder="https://"
         inputProps={{ "aria-label": "آدرس سایت" }}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
       />
-      <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+      <IconButton
+        type="button"
+        sx={{ p: "10px" }}
+        aria-label="search"
+        onClick={onClickSearch}
+      >
         <SearchIcon />
       </IconButton>
-      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-      <IconButton color="primary" sx={{ p: "10px" }} aria-label="directions">
-        <SettingsIcon />
-      </IconButton>
+      {options.show && (
+        <>
+          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+          <IconButton
+            color="primary"
+            sx={{ p: "10px" }}
+            aria-label="directions"
+            onClick={options.cb}
+          >
+            <SettingsIcon />
+          </IconButton>
+        </>
+      )}
     </Paper>
   );
-}
+};
