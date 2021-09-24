@@ -38,6 +38,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         placeholder="https://"
         inputProps={{ "aria-label": "آدرس سایت" }}
         value={text}
+        type="url"
+        name="url"
         onChange={(e) => setText(e.target.value)}
       />
       <IconButton

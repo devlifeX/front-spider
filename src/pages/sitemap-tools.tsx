@@ -43,7 +43,7 @@ const SitemapExtractor = () => {
         <SearchInput
           fns={{ text, setText, onClickSearch, options, onClickOptions }}
         >
-          <div>salalam</div>
+          <div></div>
         </SearchInput>
         {alert.open && <Alert severity={alert.type}>{alert.message}</Alert>}
         <Typography
