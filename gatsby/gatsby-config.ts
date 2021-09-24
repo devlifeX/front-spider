@@ -22,6 +22,7 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
       config, // Make the merged configuration available via GraphQL
       siteUrl: urljoin(config.website.url, config.pathPrefix),
     },
+
     plugins: [
       {
         resolve: "gatsby-plugin-compile-es6-packages",
@@ -39,14 +40,14 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
       },
       "gatsby-plugin-react-helmet",
       "gatsby-plugin-lodash",
-      /*  {
+      {
         resolve: "gatsby-source-filesystem",
         options: {
           name: "assets",
-          path: config.assetDir || path.join(__dirname, "../static"),
+          path: path.join(__dirname, "../static"),
         },
-      }, */
-      /*  {
+      },
+      /* {
         resolve: "gatsby-source-filesystem",
         options: {
           name: "posts",

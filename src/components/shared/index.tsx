@@ -7,3 +7,7 @@ export const LayoutWidthContainer = styled.div`
 
   max-width: calc(1144px + 2 * 16px);
 `;
+
+export const MyIMG = styled.img`
+  display: block;
+`;

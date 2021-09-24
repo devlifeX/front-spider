@@ -1,28 +1,24 @@
 import * as React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Box,
-  IconButton,
-  Button,
-} from "@mui/material";
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 
-import MenuIcon from "@mui/icons-material/Menu";
-import { LayoutWidthContainer } from "../shared";
-import NavigationLinks from "./navigationLink";
+import { Link } from "gatsby";
+
+import { LayoutWidthContainer, MyIMG } from "../shared";
+
+import Menu from "./Menu";
 
 const Header = () => {
   return (
     <AppBar color="default">
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <LayoutWidthContainer>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              ابزار
+          <Toolbar variant="dense">
+            <Typography component="div" sx={{ flexGrow: 1 }}>
+              <Link to="/">
+                <MyIMG width="150px" src="/images/logo.svg" alt="" />
+              </Link>
             </Typography>
-
-            <NavigationLinks />
+            <Menu />
           </Toolbar>
         </LayoutWidthContainer>
       </Box>
