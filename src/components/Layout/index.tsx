@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Box } from "@mui/material";
-import { LayoutWidthContainer } from "../shared";
+import { MainLayoutWidthContainer } from "../shared";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import SEO from "../SEO";
@@ -30,7 +30,7 @@ const MainLayout = ({ children }: MainLayoutProps): JSX.Element => (
       }}
     >
       <Header />
-      <LayoutWidthContainer>{children}</LayoutWidthContainer>
+      <MainLayoutWidthContainer>{children}</MainLayoutWidthContainer>
       <Footer />
     </Box>
   </ThemeProvider>

@@ -1,10 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import {
-  AppBar,
-  Toolbar,
   Typography,
-  Box,
-  IconButton,
   Button,
   Popper,
   Paper,
@@ -16,11 +12,11 @@ import {
 } from "@mui/material";
 import Grow from "@mui/material/Grow";
 
-import MenuIcon from "@mui/icons-material/Menu";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import { Link } from "gatsby";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
+
 const Menu = () => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -52,14 +48,14 @@ const Menu = () => {
           <Grow {...TransitionProps} style={{ transformOrigin: "center top" }}>
             <Paper sx={{ width: 180, maxWidth: "100%" }}>
               <MenuList>
-                <MenuItem>
+                <MenuItem component={Link} to="/seo-checker">
                   <ListItemIcon>
                     <InsertChartIcon fontSize="small" />
                   </ListItemIcon>
                   <ListItemText>برسی سئو</ListItemText>
                 </MenuItem>
 
-                <MenuItem>
+                <MenuItem component={Link} to="/sitemap-tools">
                   <ListItemIcon>
                     <HandymanIcon fontSize="small" />
                   </ListItemIcon>
