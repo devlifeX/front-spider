@@ -5,9 +5,9 @@ export const MainLayoutWidthContainer = styled.div`
   padding: 0 16px 0 16px;
   justify-self: center;
 
-  max-width: calc(1144px + 2 * 16px);
+  max-width: calc(1095px + 2 * 16px);
 
-  min-height: calc(100vh - 168px);
+  min-height: calc(100vh - 296px);
 `;
 
 export const LayoutWidthContainer = styled.div`

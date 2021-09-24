@@ -9,7 +9,7 @@ import Menu from "./Menu";
 
 const Header = () => {
   return (
-    <AppBar color="default">
+    <AppBar sx={{ backgroundColor: "primary.contrastText" }}>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <LayoutWidthContainer>
           <Toolbar variant="dense">

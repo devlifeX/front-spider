@@ -4,29 +4,11 @@ import {
   ThemeProvider as MuiThemeProvider,
   ThemeOptions,
 } from "@mui/material/styles";
-import { blue, pink, grey } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 
 import CssReset from "./CssReset";
 
 import "./fonts.css";
-
-import DanaWoff from "../../static/fonts/dana-fanum-regular.woff";
-import DanaWoff2 from "../../static/fonts/dana-fanum-regular.woff2";
-import DanaEOT from "../../static/fonts/dana-fanum-regular.eot";
-
-const dana = {
-  fontFamily: "Dana",
-  fontStyle: "normal",
-  fontDisplay: "auto",
-  fontWeight: 400,
-  src: `
-    local('Dana'),
-    local('dana-fanum'),
-    url(${DanaWoff2}) format('woff2'),
-    url(${DanaEOT}),
-    url(${DanaWoff}) format('woff')
-  `,
-};
 
 const typography = {
   typography: {
@@ -35,7 +17,7 @@ const typography = {
   overrides: {
     MuiCssBaseline: {
       "@global": {
-        "@font-face": [dana],
+        "@font-face": ["dana"],
       },
     },
   },
@@ -57,6 +39,9 @@ export const themeOptions: ThemeOptions = {
   ...typography,
   direction: "rtl",
   palette: {
+    background: {
+      default: "#f8f9fa",
+    },
     primary: { main: blue[500] },
     secondary: { main: "#f8f9fa" },
   },

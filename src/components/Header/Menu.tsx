@@ -21,9 +21,9 @@ const Menu = () => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const openMenuHandler = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-    setOpen((previousOpen) => !previousOpen);
+    setOpen(() => true);
   };
 
   const closeMenuHandler = () => {
@@ -34,10 +34,14 @@ const Menu = () => {
   const id = open ? "simple-popper" : undefined;
 
   return (
-    <>
+    <div onMouseLeave={closeMenuHandler}>
       <ClickAwayListener onClickAway={closeMenuHandler}>
         <Typography component="div">
-          <Button size="large" onClick={handleClick}>
+          <Button
+            size="large"
+            onClick={openMenuHandler}
+            onMouseEnter={openMenuHandler}
+          >
             <ArrowDropDownIcon />
             ابزارها
           </Button>
@@ -66,7 +70,7 @@ const Menu = () => {
           </Grow>
         )}
       </Popper>
-    </>
+    </div>
   );
 };
 

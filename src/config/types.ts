@@ -18,4 +18,5 @@ export interface SiteConfig {
 
   embeddedImageWidth: number;
   embeddedVideoWidth: number;
+  basePath?: string;
 }

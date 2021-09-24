@@ -13,7 +13,7 @@ const config: SiteConfig = {
 
     copyright: "© Copyright 2021", // Copyright string for the footer of the website and RSS feed.
     themeColor: "#D83850", // Used for setting manifest and progress theme colors.
-    backgroundColor: "#F7F7F7", // Used for setting manifest background color.
+    backgroundColor: "#f5f5f5", // Used for setting manifest background color.
   },
 
   // Gatsby Configuration
@@ -21,6 +21,7 @@ const config: SiteConfig = {
 
   embeddedImageWidth: 768, // MDX embedded image width. Used by gatsby-plugin-image for optimization
   embeddedVideoWidth: 920, // MDX embedded video width in pixels
+  basePath: ".",
 };
 
 export default config;

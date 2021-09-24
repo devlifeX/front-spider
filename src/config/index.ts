@@ -5,12 +5,7 @@ import validateSiteConfig from "./validator";
 import baseConfig from "./defaultConfig";
 import { SiteConfig } from "./types";
 
-export type {
-  SiteConfig,
-  OrganizationData,
-  UserData,
-  WebsiteData,
-} from "./types";
+export type { SiteConfig, WebsiteData } from "./types";
 
 export { default as schema } from "./schema";
 export { default as constants } from "./constants";
