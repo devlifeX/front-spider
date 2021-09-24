@@ -7,6 +7,11 @@ import {
 import { blue } from "@mui/material/colors";
 
 import CssReset from "./CssReset";
+import rtl from "jss-rtl";
+import { StylesProvider, jssPreset } from "@mui/styles";
+import { create } from "jss";
+
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 import "./fonts.css";
 
@@ -59,11 +64,13 @@ type ThemeProps = {
 };
 
 const ThemeProvider = ({ children }: ThemeProps): JSX.Element => (
-  <MuiThemeProvider theme={createTheme(themeOptions)}>
-    <CssReset />
+  <StylesProvider jss={jss}>
+    <MuiThemeProvider theme={createTheme(themeOptions)}>
+      <CssReset />
 
-    {children}
-  </MuiThemeProvider>
+      {children}
+    </MuiThemeProvider>
+  </StylesProvider>
 );
 
 export default ThemeProvider;
