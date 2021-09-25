@@ -1,11 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainLayout from "../components/Layout";
 import { SearchInput } from "../components/SearchInput";
 import { AlertProps } from "../types";
 import { Box, Typography, Alert } from "@mui/material";
+import { io } from "socket.io-client";
 
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
 const SitemapExtractor = () => {
+  /**
+   * Socket
+   */
+  const [socket, setSocket] = useState<any>(null);
+  const [messages, setMessages] = useState<any>({});
+
+  useEffect(() => {
+    const newSocket = io(`http://${window.location.hostname}:3004`, {
+      transports: ["websocket", "polling"],
+    });
+    setSocket(newSocket);
+  }, [setSocket]);
+
+  useEffect(() => {
+    const messageListener = (message: any) => {
+      setMessages(message);
+    };
+
+    if (socket) {
+      socket.on("sitemap", messageListener);
+    }
+  }, [socket]);
+
+  /**
+   * rest
+   */
   const [alert, setAlert] = useState<AlertProps>({
     open: false,
     type: "success",
@@ -18,10 +45,13 @@ const SitemapExtractor = () => {
     childrenShow: true,
   });
   const onClickSearch = () => {
-    setAlert({
+    socket.emit("sitemap");
+    console.log("messages SOCKET", messages);
+
+    /*  setAlert({
       open: true,
       message: text,
-    });
+    }); */
   };
 
   const onClickOptions = () => {};
