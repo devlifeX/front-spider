@@ -40,7 +40,7 @@ const SearchInputOptions = () => {
   return (
     <ClickAwayListener onClickAway={closeMenuHandler}>
       <div style={{ direction: "rtl" }}>
-        <Typography component="div">
+        <Typography component="div" style={{ direction: "ltr" }}>
           <Button size="large" onClick={openMenuHandler}>
             <ArrowDropDownIcon />
             تنظیمات
@@ -80,23 +80,6 @@ const SearchInputOptions = () => {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
-
-                  <ListItem>
-                    <ListItemIcon>
-                      <InsertChartIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText
-                      id="is-recursive"
-                      primary="همه لینک‌های داخلی هم استخراج شود"
-                    />
-                    <ListItemSecondaryAction>
-                      <Switch
-                        edge="end"
-                        //   onChange={handleToggle("wifi")}
-                        checked={true}
-                      />
-                    </ListItemSecondaryAction>
-                  </ListItem>
                 </List>
                 <Divider />
                 <List
@@ -124,7 +107,7 @@ const SearchInputOptions = () => {
                       <ListItem>
                         <TextField
                           variant="standard"
-                          id="outlined-required"
+                          id="basicauth-username"
                           label="نام‌کاربری"
                           placeholder="نام‌کاربری"
                           name="username"
@@ -133,7 +116,7 @@ const SearchInputOptions = () => {
                       <ListItem>
                         <TextField
                           variant="standard"
-                          id="outlined-required"
+                          id="basicauth-password"
                           label="کلمه‌عبور"
                           placeholder="کلمه‌عبور"
                           name="password"
