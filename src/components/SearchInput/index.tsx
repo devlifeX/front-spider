@@ -12,18 +12,25 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   fns,
   children,
 }): JSX.Element => {
-  const { text, setText, onClickSearch, options, onClickOptions } = fns;
+  const {
+    text,
+    setText,
+    onClickSearch,
+    options,
+    onClickOptions,
+    isLoading,
+    progressbarValue,
+  } = fns;
 
-  const [isLoading, setisLoading] = useState(false);
   return (
     <Paper
       component="div"
+      style={{ direction: "ltr" }}
       sx={{
         m: "0 0 40px 0",
         display: "flex",
         alignItems: "center",
         width: { lg: "50%", xs: "100%" },
-        direction: "ltr",
       }}
     >
       <InputBase
@@ -60,7 +67,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           }}
         >
           {isLoading ? (
-            <CircularProgressWithLabel value={10} />
+            <CircularProgressWithLabel value={progressbarValue} />
           ) : (
             <SearchIcon sx={{ height: "30px", width: "30px" }} />
           )}

@@ -10,21 +10,28 @@ const SitemapExtractor = () => {
   /**
    * Socket
    */
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [socket, setSocket] = useState<any>(null);
-  const [messages, setMessages] = useState<any>({});
+  const [progressbarValue, setProgressbarValue] = useState<any>({});
 
   useEffect(() => {
-    const newSocket = io(`http://${window.location.hostname}:3004`, {
-      transports: ["websocket", "polling"],
-    });
-    setSocket(newSocket);
+    let newSocket = null;
+    if (!newSocket && !socket) {
+      newSocket = io(`http://${window.location.hostname}:3004`, {
+        transports: ["websocket", "polling"],
+      });
+      setSocket(newSocket);
+    }
   }, [setSocket]);
 
   useEffect(() => {
     const messageListener = (message: any) => {
-      console.log("messages SOCKET", messages);
+      if (message) {
+        console.log(message);
 
-      // setMessages(message);
+        setIsLoading(!message.done);
+        setProgressbarValue(message.value);
+      }
     };
     if (socket) {
       socket.on("sitemap", messageListener);
@@ -47,7 +54,6 @@ const SitemapExtractor = () => {
   });
   const onClickSearch = () => {
     socket.emit("sitemap");
-    console.log("messages SOCKET", messages);
 
     /*  setAlert({
       open: true,
@@ -69,7 +75,15 @@ const SitemapExtractor = () => {
         }}
       >
         <SearchInput
-          fns={{ text, setText, onClickSearch, options, onClickOptions }}
+          fns={{
+            text,
+            setText,
+            onClickSearch,
+            options,
+            onClickOptions,
+            isLoading,
+            progressbarValue,
+          }}
         >
           <SearchInputOptions />
         </SearchInput>

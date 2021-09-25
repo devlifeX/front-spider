@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Typography,
   Button,
-  
   Popper,
   Paper,
   ListItemIcon,
@@ -40,7 +39,7 @@ const SearchInputOptions = () => {
 
   return (
     <ClickAwayListener onClickAway={closeMenuHandler}>
-      <div>
+      <div style={{ direction: "rtl" }}>
         <Typography component="div">
           <Button size="large" onClick={openMenuHandler}>
             <ArrowDropDownIcon />

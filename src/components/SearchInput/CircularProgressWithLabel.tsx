@@ -2,12 +2,22 @@ import * as React from "react";
 import CircularProgress, {
   CircularProgressProps,
 } from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { Box, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  root: {
+    transition: "none",
+  },
+  circle: {
+    transition: "none",
+  },
+});
 
 const CircularProgressWithLabel = (
   props: CircularProgressProps & { value: number }
 ) => {
+  const classes = useStyles();
   return (
     <Box
       sx={{
@@ -15,7 +25,12 @@ const CircularProgressWithLabel = (
         display: "inline-flex",
       }}
     >
-      <CircularProgress variant="determinate" {...props} />
+      <CircularProgress
+        classes={classes}
+        disableShrink
+        variant="determinate"
+        {...props}
+      />
       <Box
         sx={{
           top: 0,
@@ -32,7 +47,7 @@ const CircularProgressWithLabel = (
           variant="caption"
           component="div"
           color="text.secondary"
-        >{`${Math.round(props.value)}%`}</Typography>
+        >{`${Math.round(props.value)}٪`}</Typography>
       </Box>
     </Box>
   );
