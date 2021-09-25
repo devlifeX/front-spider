@@ -7,11 +7,10 @@ import {
 import { blue } from "@mui/material/colors";
 
 import CssReset from "./CssReset";
-import rtl from "jss-rtl";
-import { StylesProvider, jssPreset } from "@mui/styles";
-import { create } from "jss";
 
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+import rtlPlugin from "stylis-plugin-rtl";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
 
 import "./fonts.css";
 
@@ -63,14 +62,23 @@ type ThemeProps = {
   children: React.ReactNode;
 };
 
+declare module "stylis-plugin-rtl" {
+  export default function rtlPlugin(): string | undefined;
+}
+
+const cacheRtl = createCache({
+  key: "muirtl",
+  stylisPlugins: [rtlPlugin],
+});
+
 const ThemeProvider = ({ children }: ThemeProps): JSX.Element => (
-  <StylesProvider jss={jss}>
+  <CacheProvider value={cacheRtl}>
     <MuiThemeProvider theme={createTheme(themeOptions)}>
       <CssReset />
 
       {children}
     </MuiThemeProvider>
-  </StylesProvider>
+  </CacheProvider>
 );
 
 export default ThemeProvider;

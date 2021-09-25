@@ -56,8 +56,6 @@
     "gatsby-source-filesystem": "^3.14.0",
     "gatsby-transformer-remark": "^4.11.0",
     "gatsby-transformer-sharp": "^3.14.0",
-    "jss": "^10.8.0",
-    "jss-rtl": "^0.3.0",
     "lodash": "^4.17.21",
     "prismjs": "^1.25.0",
     "react": "^17.0.1",
@@ -71,6 +69,8 @@
     "socket.io-client": "^3.1.1",
     "source-map-support": "^0.5.20",
     "styled-components": "^5.3.1",
+    "stylis": "^4.0.10",
+    "stylis-plugin-rtl": "^2.1.0",
     "ts-node": "^9.1.1",
     "url-join": "^4.0.1",
     "uuid": "^3.4.0"
@@ -89,5 +89,8 @@
     "@types/url-join": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "gatsby-plugin-ts-config": "^2.1.2"
+  },
+  "resolutions": {
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
   }
 }

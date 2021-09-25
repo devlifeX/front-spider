@@ -22,9 +22,10 @@ const SitemapExtractor = () => {
 
   useEffect(() => {
     const messageListener = (message: any) => {
-      setMessages(message);
-    };
+      console.log("messages SOCKET", messages);
 
+      // setMessages(message);
+    };
     if (socket) {
       socket.on("sitemap", messageListener);
     }
