@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
+import { Divider, IconButton, Paper, InputBase, Box } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
+import CircularProgressWithLabel from "./CircularProgressWithLabel";
 
 type SearchInputProps = {
   fns: any;
@@ -16,6 +14,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 }): JSX.Element => {
   const { text, setText, onClickSearch, options, onClickOptions } = fns;
 
+  const [isLoading, setisLoading] = useState(false);
   return (
     <Paper
       component="div"
@@ -41,14 +40,31 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         type="url"
         name="url"
         onChange={(e) => setText(e.target.value)}
+        disabled={isLoading}
       />
       <IconButton
         type="button"
         sx={{ p: "10px" }}
         aria-label="search"
         onClick={onClickSearch}
+        disabled={isLoading}
       >
-        <SearchIcon />
+        <Box
+          sx={{
+            height: "40px",
+            width: "40px",
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {isLoading ? (
+            <CircularProgressWithLabel value={10} />
+          ) : (
+            <SearchIcon sx={{ height: "30px", width: "30px" }} />
+          )}
+        </Box>
       </IconButton>
       {options.buttonShow && (
         <>

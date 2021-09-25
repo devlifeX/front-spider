@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Typography,
   Button,
+  
   Popper,
   Paper,
   ListItemIcon,
@@ -41,11 +42,7 @@ const SearchInputOptions = () => {
     <ClickAwayListener onClickAway={closeMenuHandler}>
       <div>
         <Typography component="div">
-          <Button
-            size="large"
-            onClick={openMenuHandler}
-            onMouseEnter={openMenuHandler}
-          >
+          <Button size="large" onClick={openMenuHandler}>
             <ArrowDropDownIcon />
             تنظیمات
           </Button>
