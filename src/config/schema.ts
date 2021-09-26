@@ -37,7 +37,7 @@ export const schema = `#graphql
     iconPath: String
     iconList: [IconManifest]!
     iconCachePaths: [String]
-
+    backendUR: String
     basePath: String
   }
 

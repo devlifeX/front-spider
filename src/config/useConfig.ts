@@ -19,6 +19,7 @@ const useConfig = (): SiteConfig => {
               embeddedImageWidth
               embeddedVideoWidth
               pathPrefix
+              backendURL
               website {
                 backgroundColor
                 copyright

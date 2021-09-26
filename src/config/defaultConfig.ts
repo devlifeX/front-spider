@@ -22,6 +22,10 @@ const config: SiteConfig = {
   embeddedImageWidth: 768, // MDX embedded image width. Used by gatsby-plugin-image for optimization
   embeddedVideoWidth: 920, // MDX embedded video width in pixels
   basePath: ".",
+  backendURL:
+    process.env.NODE_ENV === "production"
+      ? "https://devlifex.herokuapp.com"
+      : "http://localhost:3004",
 };
 
 export default config;

@@ -17,9 +17,6 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
     config.pathPrefix === "" ? "/" : config.pathPrefix;
 
   return {
-    flags: {
-      FAST_REFRESH: false,
-    },
     pathPrefix: validatedPathPrefix,
     siteMetadata: {
       config, // Make the merged configuration available via GraphQL

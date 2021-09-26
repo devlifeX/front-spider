@@ -4,9 +4,10 @@ import { SearchInput } from "../components/SearchInput";
 import { AlertProps } from "../types";
 import { Box, Typography, Alert } from "@mui/material";
 import { io } from "socket.io-client";
-
+import { useConfig } from "../config";
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
 const SitemapExtractor = () => {
+  const config = useConfig();
   /**
    * Socket
    */
@@ -15,12 +16,10 @@ const SitemapExtractor = () => {
   const [progressbarValue, setProgressbarValue] = useState<any>({});
 
   useEffect(() => {
-    console.log(process.env.WS_URL);
-
     let newSocket = null;
     if (!newSocket && !socket) {
       // newSocket = io(`http://${window.location.hostname}:3004`, {
-      newSocket = io(`${process.env.WS_URL}`, {
+      newSocket = io(config.backendURL, {
         transports: ["websocket", "polling"],
       });
       setSocket(newSocket);
