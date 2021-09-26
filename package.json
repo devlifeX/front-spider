@@ -26,6 +26,7 @@
     "@mui/styled-engine-sc": "^5.0.0-rc.1",
     "@mui/styles": "^5.0.1",
     "@types/socket.io-client": "^3.0.0",
+    "dotenv": "^8.6.0",
     "gatsby": "^3.13.1",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-catch-links": "^3.14.0",
@@ -78,6 +79,7 @@
   "devDependencies": {
     "@types/babel__plugin-transform-runtime": "^7.9.2",
     "@types/clone-deep": "^4.0.1",
+    "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.9.6",
     "@types/react": "^17.0.24",

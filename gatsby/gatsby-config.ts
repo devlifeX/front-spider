@@ -14,7 +14,7 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
   const config = withDefaults(userConfig);
 
   const validatedPathPrefix =
-    config.pathPrefix ===    "" ? "/" : config.pathPrefix;
+    config.pathPrefix === "" ? "/" : config.pathPrefix;
 
   return {
     flags: {

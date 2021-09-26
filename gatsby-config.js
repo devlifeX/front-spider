@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const { useGatsbyConfig } = require("gatsby-plugin-ts-config");
 
 module.exports = useGatsbyConfig("./gatsby/gatsby-config");
