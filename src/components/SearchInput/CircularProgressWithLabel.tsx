@@ -25,12 +25,7 @@ const CircularProgressWithLabel = (
         display: "inline-flex",
       }}
     >
-      <CircularProgress
-        classes={classes}
-        disableShrink
-        variant="determinate"
-        {...props}
-      />
+      <CircularProgress classes={classes} variant="determinate" {...props} />
       <Box
         sx={{
           top: 0,

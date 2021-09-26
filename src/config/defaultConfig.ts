@@ -25,7 +25,7 @@ const config: SiteConfig = {
   backendURL:
     process.env.NODE_ENV === "production"
       ? "https://devlifex.herokuapp.com"
-      : "http://localhost:3004",
+      : "http://localhost:3003",
 };
 
 export default config;

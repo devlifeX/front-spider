@@ -13,12 +13,11 @@ const SitemapExtractor = () => {
    */
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [socket, setSocket] = useState<any>(null);
-  const [progressbarValue, setProgressbarValue] = useState<any>({});
+  const [progressbarValue, setProgressbarValue] = useState(0);
 
   useEffect(() => {
     let newSocket = null;
     if (!newSocket && !socket) {
-      // newSocket = io(`http://${window.location.hostname}:3004`, {
       newSocket = io(config.backendURL, {
         transports: ["websocket", "polling"],
       });
@@ -38,7 +37,7 @@ const SitemapExtractor = () => {
       }
       if (message) {
         setIsLoading(!message.done);
-        setProgressbarValue(message.value);
+        setProgressbarValue(message.value as number);
       }
     };
     if (socket) {
@@ -65,6 +64,7 @@ const SitemapExtractor = () => {
       open: false,
       message: "",
     });
+
     socket.emit("sitemap", { url: text, isDuplicate: true });
   };
 
