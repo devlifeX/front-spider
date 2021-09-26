@@ -13,7 +13,7 @@ const SitemapExtractor = () => {
    */
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [socket, setSocket] = useState<any>(null);
-  const [progressbarValue, setProgressbarValue] = useState(0);
+  const [progressbarValue, setProgressbarValue] = useState<number>(0);
 
   useEffect(() => {
     let newSocket = null;
@@ -29,14 +29,18 @@ const SitemapExtractor = () => {
     const messageListener = (message: any) => {
       console.log(message);
       if (message?.error) {
+        setIsLoading(false);
         return setAlert({
           open: true,
           message: message?.error.message,
           type: "error",
         });
       }
+      if (message?.done) {
+        setText("");
+        setIsLoading(false);
+      }
       if (message) {
-        setIsLoading(!message.done);
         setProgressbarValue(message.value as number);
       }
     };
@@ -60,6 +64,9 @@ const SitemapExtractor = () => {
     childrenShow: true,
   });
   const onClickSearch = () => {
+    if (!text) return;
+    setProgressbarValue(0);
+    setIsLoading(true);
     setAlert({
       open: false,
       message: "",

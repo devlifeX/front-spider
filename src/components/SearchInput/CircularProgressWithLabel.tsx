@@ -18,6 +18,7 @@ const CircularProgressWithLabel = (
   props: CircularProgressProps & { value: number }
 ) => {
   const classes = useStyles();
+  const { value } = props;
   return (
     <Box
       sx={{
@@ -25,7 +26,11 @@ const CircularProgressWithLabel = (
         display: "inline-flex",
       }}
     >
-      <CircularProgress classes={classes} variant="determinate" {...props} />
+      <CircularProgress
+        classes={classes}
+        variant={value > 0 ? `determinate` : `indeterminate`}
+        {...props}
+      />
       <Box
         sx={{
           top: 0,
