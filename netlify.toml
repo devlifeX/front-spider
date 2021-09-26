@@ -1,0 +1,3 @@
+[build.environment]
+  NODE_VERSION = "16.6.0"
+  WS_URL = "https://devlifex.herokuapp.com"
