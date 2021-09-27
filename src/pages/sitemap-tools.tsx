@@ -119,7 +119,7 @@ const SitemapExtractor = () => {
           استیجینگ هست؟ نگران نباش روی چرخ‌دنده کلیک کن.{" "}
         </Typography>
       </Box>
-      <DatagridSitemap />
+      {/* <DatagridSitemap /> */}
     </MainLayout>
   );
 };
