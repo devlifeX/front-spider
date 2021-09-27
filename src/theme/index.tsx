@@ -8,9 +8,8 @@ import { blue } from "@mui/material/colors";
 
 import CssReset from "./CssReset";
 
-import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
-import createCache from "@emotion/cache";
+import cacheRtl from "./emotionCacheProps";
 
 import "./fonts.css";
 
@@ -61,15 +60,6 @@ export const themeOptions: ThemeOptions = {
 type ThemeProps = {
   children: React.ReactNode;
 };
-
-declare module "stylis-plugin-rtl" {
-  export default function rtlPlugin(): string | undefined;
-}
-
-const cacheRtl = createCache({
-  key: "muirtl",
-  stylisPlugins: [rtlPlugin],
-});
 
 const ThemeProvider = ({ children }: ThemeProps): JSX.Element => (
   <CacheProvider value={cacheRtl}>

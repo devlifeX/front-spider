@@ -6,6 +6,8 @@ import { Box, Typography, Alert } from "@mui/material";
 import { io } from "socket.io-client";
 import { useConfig } from "../config";
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
+import DatagridSitemap from "../components/DatagridSitemap";
+
 const SitemapExtractor = () => {
   const config = useConfig();
   /**
@@ -117,6 +119,7 @@ const SitemapExtractor = () => {
           استیجینگ هست؟ نگران نباش روی چرخ‌دنده کلیک کن.{" "}
         </Typography>
       </Box>
+      <DatagridSitemap />
     </MainLayout>
   );
 };
