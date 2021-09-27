@@ -48,6 +48,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         name="url"
         onChange={(e) => setText(e.target.value)}
         disabled={isLoading}
+        onKeyDown={(e) => (e.key === "Enter" ? onClickSearch() : false)}
       />
       <IconButton
         type="button"

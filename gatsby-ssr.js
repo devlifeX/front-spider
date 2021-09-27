@@ -17,14 +17,17 @@ export const replaceRenderer = ({
   );
 
   setHeadComponents(
-    emotionStyles.styles.map((style) => (
-      <style
-        data-emotion={`${style.key} ${style.ids.join(" ")}`}
-        key={style.key}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: style.css }}
-      />
-    ))
+    emotionStyles.styles.map((style) => {
+      console.log(style);
+      return (
+        <style
+          data-emotion={`${style.key} ${style.ids.join(" ")}`}
+          key={style.key}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: style.css }}
+        />
+      );
+    })
   );
 
   // render the result from `extractCritical`

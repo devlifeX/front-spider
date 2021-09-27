@@ -163,13 +163,15 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
         options: {},
       },
       {
-        resolve: `gatsby-plugin-styled-components`,
-        options: {},
-      },
-      {
         resolve: `gatsby-plugin-material-ui`,
         options: {
           pathToEmotionCacheProps: `src/theme/emotionCacheProps`,
+        },
+      },
+      {
+        resolve: `gatsby-plugin-styled-components`,
+        options: {
+          displayName: false,
         },
       },
     ],

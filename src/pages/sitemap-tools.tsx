@@ -6,7 +6,10 @@ import { Box, Typography, Alert } from "@mui/material";
 import { io } from "socket.io-client";
 import { useConfig } from "../config";
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
-import DatagridSitemap from "../components/DatagridSitemap";
+import DataGrid from "react-data-grid";
+
+import SkeletonDataGrid from "../components/Skeleton";
+const columns = [{ key: "url", name: "URL" }];
 
 const SitemapExtractor = () => {
   const config = useConfig();
@@ -16,19 +19,31 @@ const SitemapExtractor = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [socket, setSocket] = useState<any>(null);
   const [progressbarValue, setProgressbarValue] = useState<number>(0);
+  const [alert, setAlert] = useState<AlertProps>({
+    open: false,
+    type: "success",
+    message: "",
+  });
+  const [text, setText] = useState("");
+  const [options, setOptions] = useState({
+    buttonShow: true,
+    childrenShow: true,
+  });
+  const [response, setResponse] = useState<any[]>([]);
 
   useEffect(() => {
-    let newSocket = null;
-    if (!newSocket && !socket) {
-      newSocket = io(config.backendURL, {
-        transports: ["websocket", "polling"],
-      });
-      setSocket(newSocket);
-    }
-  }, [setSocket]);
+    if (socket) return;
+
+    const newSocket = io(config.backendURL, {
+      reconnectionAttempts: 10,
+      transports: ["websocket"],
+    });
+
+    setSocket(newSocket);
+  }, [setSocket, socket]);
 
   useEffect(() => {
-    const messageListener = (message: any) => {
+    const socketHandler = (message: any) => {
       console.log(message);
       if (message?.error) {
         setIsLoading(false);
@@ -45,28 +60,18 @@ const SitemapExtractor = () => {
       if (message) {
         setProgressbarValue(message.value as number);
       }
+      if (message?.urls) {
+        setResponse([...response, ...message.urls]);
+      }
     };
     if (socket) {
-      socket.on("sitemap", messageListener);
+      socket.on("sitemap", socketHandler);
     }
   }, [socket]);
 
-  /**
-   * rest
-   */
-  const [alert, setAlert] = useState<AlertProps>({
-    open: false,
-    type: "success",
-    message: "",
-  });
-  const [text, setText] = useState("");
-
-  const [options, setOptions] = useState({
-    buttonShow: true,
-    childrenShow: true,
-  });
   const onClickSearch = () => {
     if (!text) return;
+    setResponse([]);
     setProgressbarValue(0);
     setIsLoading(true);
     setAlert({
@@ -119,7 +124,8 @@ const SitemapExtractor = () => {
           استیجینگ هست؟ نگران نباش روی چرخ‌دنده کلیک کن.{" "}
         </Typography>
       </Box>
-      {/* <DatagridSitemap /> */}
+      {isLoading && response.length <= 0 && <SkeletonDataGrid />}
+      {response.length > 0 && <DataGrid columns={columns} rows={response} />}
     </MainLayout>
   );
 };

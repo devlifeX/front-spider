@@ -6,7 +6,7 @@ import createCache from "@emotion/cache";
 // }
 
 const cacheRtl = createCache({
-  key: "muirtl",
+  key: "x",
   stylisPlugins: [rtlPlugin],
 });
 
