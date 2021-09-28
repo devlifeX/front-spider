@@ -68,57 +68,6 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
       "gatsby-transformer-sharp",
       "gatsby-plugin-image",
       "gatsby-remark-images",
-      {
-        resolve: `gatsby-plugin-mdx`,
-        options: {
-          extensions: [`.mdx`, `.md`],
-          gatsbyRemarkPlugins: [
-            {
-              resolve: "gatsby-remark-embed-video",
-              options: {
-                width: config.embeddedVideoWidth,
-              },
-            },
-            {
-              resolve: "gatsby-remark-responsive-iframe",
-            },
-            {
-              resolve: `gatsby-remark-relative-images`,
-            },
-            {
-              resolve: "gatsby-remark-images",
-              options: {
-                maxWidth: config.embeddedImageWidth,
-                showCaptions: ["title", "alt"],
-              },
-            },
-            {
-              resolve: "remark-codesandbox/gatsby",
-              options: {
-                mode: "button",
-              },
-            },
-            { resolve: "gatsby-remark-copy-linked-files" },
-
-            {
-              resolve: "gatsby-remark-prismjs",
-              options: {
-                classPrefix: "language-",
-                inlineCodeMarker: null,
-                aliases: {},
-                showLineNumbers: false,
-                noInlineHighlight: false,
-                prompt: {
-                  user: "root",
-                  host: "localhost",
-                  global: false,
-                },
-                escapeEntities: {},
-              },
-            },
-          ],
-        },
-      },
       /* {
         resolve: "gatsby-plugin-google-gtag",
         options: {
@@ -132,7 +81,7 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
         },
       },
       "gatsby-plugin-catch-links",
-      "gatsby-plugin-twitter",
+      // "gatsby-plugin-twitter",
       "gatsby-plugin-sitemap",
       /*   {
         resolve: "gatsby-plugin-manifest",
@@ -158,10 +107,10 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
         },
       }, */
 
-      {
+      /* {
         resolve: "gatsby-plugin-web-font-loader",
         options: {},
-      },
+      }, */
       {
         resolve: `gatsby-plugin-material-ui`,
         options: {

@@ -6,10 +6,13 @@ import { Box, Typography, Alert } from "@mui/material";
 import { io } from "socket.io-client";
 import { useConfig } from "../config";
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
-import DataGrid from "react-data-grid";
+import MyDataGrid from "../components/MyDataGrid";
 
 import SkeletonDataGrid from "../components/Skeleton";
-const columns = [{ key: "url", name: "URL" }];
+const columns = [
+  { key: "url", name: "URL" },
+  { key: "relativeTime", name: "time" },
+];
 
 const SitemapExtractor = () => {
   const config = useConfig();
@@ -61,7 +64,7 @@ const SitemapExtractor = () => {
         setProgressbarValue(message.value as number);
       }
       if (message?.urls) {
-        setResponse([...response, ...message.urls]);
+        setResponse((oldReponse) => [...oldReponse, ...message.urls]);
       }
     };
     if (socket) {
@@ -125,7 +128,14 @@ const SitemapExtractor = () => {
         </Typography>
       </Box>
       {isLoading && response.length <= 0 && <SkeletonDataGrid />}
-      {response.length > 0 && <DataGrid columns={columns} rows={response} />}
+      {/*  {response.length > 0 && (
+        <DataGrid
+          columns={columns}
+          rows={response}
+          rowsCount={response.length}
+        />
+      )} */}
+      <MyDataGrid />
     </MainLayout>
   );
 };
