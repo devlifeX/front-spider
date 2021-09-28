@@ -79,7 +79,7 @@
     "stylis-plugin-rtl": "^2.1.0",
     "ts-node": "^9.1.1",
     "url-join": "^4.0.1",
-    "uuid": "^3.4.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/babel__plugin-transform-runtime": "^7.9.2",
@@ -94,6 +94,7 @@
     "@types/remove-markdown": "^0.3.1",
     "@types/source-map-support": "^0.5.4",
     "@types/url-join": "^4.0.1",
+    "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "gatsby-plugin-ts-config": "^2.1.2"
   },

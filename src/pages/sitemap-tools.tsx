@@ -6,13 +6,34 @@ import { Box, Typography, Alert } from "@mui/material";
 import { io } from "socket.io-client";
 import { useConfig } from "../config";
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
-import MyDataGrid from "../components/MyDataGrid";
+import {
+  DataGrid,
+  GridColDef,
+  GridToolbarContainer,
+  GridToolbarExport,
+} from "@mui/x-data-grid";
+import { v4 as uuidv4 } from "uuid";
 
 import SkeletonDataGrid from "../components/Skeleton";
-const columns = [
-  { key: "url", name: "URL" },
-  { key: "relativeTime", name: "time" },
+
+const columns: GridColDef[] = [
+  { field: "url", headerName: "لینک", minWidth: 405 },
+  {
+    field: "relativeTime",
+    headerName: "آخرین بروزرسانی",
+    minWidth: 200,
+  },
 ];
+
+function CustomToolbar() {
+  return (
+    <div style={{ direction: "ltr" }}>
+      <GridToolbarContainer>
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    </div>
+  );
+}
 
 const SitemapExtractor = () => {
   const config = useConfig();
@@ -47,7 +68,6 @@ const SitemapExtractor = () => {
 
   useEffect(() => {
     const socketHandler = (message: any) => {
-      console.log(message);
       if (message?.error) {
         setIsLoading(false);
         return setAlert({
@@ -86,6 +106,10 @@ const SitemapExtractor = () => {
   };
 
   const onClickOptions = () => {};
+
+  const handleGetRowId = (e: any) => {
+    return uuidv4();
+  };
 
   return (
     <MainLayout>
@@ -135,7 +159,22 @@ const SitemapExtractor = () => {
           rowsCount={response.length}
         />
       )} */}
-      <MyDataGrid />
+      {response.length > 0 && (
+        <div style={{ height: 500, width: "100%", direction: "ltr" }}>
+          <DataGrid
+            rows={response}
+            columns={columns}
+            pageSize={25}
+            rowsPerPageOptions={[25, 50, 100]}
+            checkboxSelection
+            pagination
+            getRowId={handleGetRowId}
+            components={{
+              Toolbar: CustomToolbar,
+            }}
+          />
+        </div>
+      )}
     </MainLayout>
   );
 };
