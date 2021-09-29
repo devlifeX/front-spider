@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MainLayout from "../components/Layout";
 import { SearchInput } from "../components/SearchInput";
 import { AlertProps } from "../types";
-import { Box, Typography, Alert, AlertColor, Snackbar } from "@mui/material";
+import { Box, Typography, AlertColor } from "@mui/material";
 import { io } from "socket.io-client";
 import { useConfig } from "../config";
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
@@ -115,7 +115,7 @@ const SitemapExtractor = () => {
 
   const onClickOptions = () => {};
 
-  const handleGetRowId = (e: any) => {
+  const handleGetRowId = () => {
     return uuidv4();
   };
 
