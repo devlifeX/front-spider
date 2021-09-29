@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MainLayout from "../components/Layout";
 import { SearchInput } from "../components/SearchInput";
 import { AlertProps } from "../types";
-import { Box, Typography, Alert } from "@mui/material";
+import { Box, Typography, Alert, Snackbar } from "@mui/material";
 import { io } from "socket.io-client";
 import { useConfig } from "../config";
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";

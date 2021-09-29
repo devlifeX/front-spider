@@ -7,22 +7,26 @@ import { LayoutWidthContainer, MyIMG } from "../shared";
 
 import Menu from "./Menu";
 
+import InternetConnectionCheck from "../InternetConnectionCheck";
 const Header = () => {
   return (
-    <AppBar sx={{ backgroundColor: "primary.contrastText" }}>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <LayoutWidthContainer>
-          <Toolbar variant="dense">
-            <Typography component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/">
-                <MyIMG width="150px" src="/images/logo.svg" alt="" />
-              </Link>
-            </Typography>
-            <Menu />
-          </Toolbar>
-        </LayoutWidthContainer>
-      </Box>
-    </AppBar>
+    <>
+      <InternetConnectionCheck />
+      <AppBar sx={{ backgroundColor: "primary.contrastText" }}>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <LayoutWidthContainer>
+            <Toolbar variant="dense">
+              <Typography component="div" sx={{ flexGrow: 1 }}>
+                <Link to="/">
+                  <MyIMG width="150px" src="/images/logo.svg" alt="" />
+                </Link>
+              </Typography>
+              <Menu />
+            </Toolbar>
+          </LayoutWidthContainer>
+        </Box>
+      </AppBar>
+    </>
   );
 };
 
