@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
-import { ActionTypes } from "../types";
+import React, { useState, useEffect } from "react";
 import MainLayout from "../components/Layout";
 import { SearchInput } from "../components/SearchInput";
 import { AlertProps } from "../types";
