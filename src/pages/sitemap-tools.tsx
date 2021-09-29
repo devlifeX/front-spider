@@ -118,7 +118,11 @@ const SitemapExtractor = () => {
       message: "",
     });
 
-    socket.emit("sitemap", { url: state.text, isDuplicate: true });
+    socket.emit("sitemap", {
+      url: state.text,
+      isDuplicate: true,
+      basicAuth: state.basicAuth,
+    });
   };
 
   const onClickOptions = () => {};
@@ -149,7 +153,10 @@ const SitemapExtractor = () => {
             progressbarValue: state.progressbarValue,
           }}
         >
-          <SearchInputOptions />
+          <SearchInputOptions
+            basicAuth={state.basicAuth}
+            setBasicAuth={ac.updateBasicAuth}
+          />
         </SearchInput>
         {alert.open && (
           <MySnakbar open={alert.open} type={alert.type}>

@@ -22,6 +22,11 @@ export interface SitemapResponse {
   urls: any[];
   done: boolean;
 }
+export interface BasicAuthProps {
+  hasBasicAuth: boolean;
+  basicAuthUsername: string;
+  basicAuthPassword: string;
+}
 export interface State {
   start: boolean;
   isLoading: boolean;
@@ -31,6 +36,7 @@ export interface State {
   text: string;
   count: number;
   meta: SitemapResponseMeta[];
+  basicAuth: BasicAuthProps;
 }
 
 export enum ActionTypes {
@@ -41,6 +47,7 @@ export enum ActionTypes {
   SET_META = "SET_META",
   SET_START = "SET_START",
 
+  UPDATE_BASICAUTH = "UPDATE_BASICAUTH",
   UPDATE_META = "UPDATE_META",
   UPDATE_COUNT = "UPDATE_COUNT",
 

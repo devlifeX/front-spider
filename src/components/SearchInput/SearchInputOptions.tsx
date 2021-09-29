@@ -15,15 +15,22 @@ import {
   TextField,
   ClickAwayListener,
 } from "@mui/material";
+import { BasicAuthProps } from "../../types";
 import Grow from "@mui/material/Grow";
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 
-const SearchInputOptions = () => {
+type SearchInputOptionsProps = {
+  setBasicAuth: (e: Partial<BasicAuthProps>) => void;
+  basicAuth: BasicAuthProps;
+};
+const SearchInputOptions = ({
+  setBasicAuth,
+  basicAuth,
+}: SearchInputOptionsProps) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [basicAuth, setBasicAuth] = useState(false);
 
   const openMenuHandler = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -96,13 +103,17 @@ const SearchInputOptions = () => {
                     <ListItemSecondaryAction>
                       <Switch
                         edge="end"
-                        onChange={() => setBasicAuth(!basicAuth)}
-                        checked={basicAuth}
+                        onChange={() =>
+                          setBasicAuth({
+                            hasBasicAuth: !basicAuth.hasBasicAuth,
+                          })
+                        }
+                        checked={basicAuth.hasBasicAuth}
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
 
-                  {basicAuth && (
+                  {basicAuth.hasBasicAuth && (
                     <>
                       <ListItem>
                         <TextField
@@ -111,6 +122,12 @@ const SearchInputOptions = () => {
                           label="نام‌کاربری"
                           placeholder="نام‌کاربری"
                           name="username"
+                          value={basicAuth.basicAuthUsername}
+                          onChange={(e) =>
+                            setBasicAuth({
+                              basicAuthUsername: e.target.value,
+                            })
+                          }
                         />
                       </ListItem>
                       <ListItem>
@@ -121,6 +138,12 @@ const SearchInputOptions = () => {
                           placeholder="کلمه‌عبور"
                           name="password"
                           type="password"
+                          value={basicAuth.basicAuthPassword}
+                          onChange={(e) =>
+                            setBasicAuth({
+                              basicAuthPassword: e.target.value,
+                            })
+                          }
                         />
                       </ListItem>
                     </>

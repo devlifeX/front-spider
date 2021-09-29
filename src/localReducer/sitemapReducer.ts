@@ -19,6 +19,11 @@ export function init(): State {
     meta: [],
     text: "",
     count: 0,
+    basicAuth: {
+      hasBasicAuth: false,
+      basicAuthUsername: "",
+      basicAuthPassword: "",
+    },
   };
 }
 
@@ -38,6 +43,9 @@ export function reducer(state: State, action: Action) {
       return { ...state, res: newRes };
     case ActionTypes.SET_META:
       return { ...state, meta: action.payload };
+
+    case ActionTypes.UPDATE_BASICAUTH:
+      return { ...state, basicAuth: { ...state.basicAuth, ...action.payload } };
 
     case ActionTypes.UPDATE_META:
       const allExceptNew = state.meta.filter(
@@ -62,6 +70,7 @@ interface ActionCreator {
   setStart: (payload: boolean) => void;
   setRes: (payload: any) => void;
   setMeta: (payload: any) => void;
+  updateBasicAuth: (payload: any) => void;
   updateMeta: (payload: any) => void;
   updateCount: (payload: number) => void;
   resetAfterDone: () => void;
@@ -84,6 +93,9 @@ const actionCreator = (dispatch: Dispatch<Action>) => () => ({
     dispatch({ type: ActionTypes.SET_RESPONSE, payload }),
 
   setMeta: (payload: any) => dispatch({ type: ActionTypes.SET_META, payload }),
+
+  updateBasicAuth: (payload: any) =>
+    dispatch({ type: ActionTypes.UPDATE_BASICAUTH, payload }),
 
   updateMeta: (payload: any) =>
     dispatch({ type: ActionTypes.UPDATE_META, payload }),
