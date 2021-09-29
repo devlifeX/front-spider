@@ -24,6 +24,7 @@ export function init(): State {
       basicAuthUsername: "",
       basicAuthPassword: "",
     },
+    isDuplicate: true,
   };
 }
 
@@ -37,6 +38,10 @@ export function reducer(state: State, action: Action) {
       return { ...state, isLoading: action.payload };
     case ActionTypes.SET_START:
       return { ...state, start: action.payload };
+
+    case ActionTypes.SET_IS_DUPLICATE:
+      return { ...state, isDuplicate: action.payload };
+
     case ActionTypes.SET_RESPONSE:
       const urls = [...state.res.urls, ...action.payload.urls];
       const newRes = { ...action.payload, urls: urls };
@@ -68,6 +73,7 @@ interface ActionCreator {
   setProgressbar: (payload: number) => void;
   setLoading: (payload: boolean) => void;
   setStart: (payload: boolean) => void;
+  setIsDuplicate: (payload: boolean) => void;
   setRes: (payload: any) => void;
   setMeta: (payload: any) => void;
   updateBasicAuth: (payload: any) => void;
@@ -88,6 +94,9 @@ const actionCreator = (dispatch: Dispatch<Action>) => () => ({
 
   setStart: (payload: boolean) =>
     dispatch({ type: ActionTypes.SET_START, payload }),
+
+  setIsDuplicate: (payload: boolean) =>
+    dispatch({ type: ActionTypes.SET_IS_DUPLICATE, payload }),
 
   setRes: (payload: any) =>
     dispatch({ type: ActionTypes.SET_RESPONSE, payload }),

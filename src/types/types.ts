@@ -37,6 +37,7 @@ export interface State {
   count: number;
   meta: SitemapResponseMeta[];
   basicAuth: BasicAuthProps;
+  isDuplicate: boolean;
 }
 
 export enum ActionTypes {
@@ -46,6 +47,7 @@ export enum ActionTypes {
   SET_LOADING = "SET_LOADING",
   SET_META = "SET_META",
   SET_START = "SET_START",
+  SET_IS_DUPLICATE = "SET_IS_DUPLICATE",
 
   UPDATE_BASICAUTH = "UPDATE_BASICAUTH",
   UPDATE_META = "UPDATE_META",

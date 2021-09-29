@@ -120,7 +120,7 @@ const SitemapExtractor = () => {
 
     socket.emit("sitemap", {
       url: state.text,
-      isDuplicate: true,
+      isDuplicate: state.isDuplicate,
       basicAuth: state.basicAuth,
     });
   };
@@ -156,6 +156,8 @@ const SitemapExtractor = () => {
           <SearchInputOptions
             basicAuth={state.basicAuth}
             setBasicAuth={ac.updateBasicAuth}
+            isDuplicate={state.isDuplicate}
+            setIsDuplicate={ac.setIsDuplicate}
           />
         </SearchInput>
         {alert.open && (

@@ -24,10 +24,14 @@ import InsertChartIcon from "@mui/icons-material/InsertChart";
 type SearchInputOptionsProps = {
   setBasicAuth: (e: Partial<BasicAuthProps>) => void;
   basicAuth: BasicAuthProps;
+  isDuplicate: boolean;
+  setIsDuplicate: (v: boolean) => void;
 };
 const SearchInputOptions = ({
   setBasicAuth,
   basicAuth,
+  isDuplicate,
+  setIsDuplicate,
 }: SearchInputOptionsProps) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -82,8 +86,8 @@ const SearchInputOptions = ({
                     <ListItemSecondaryAction>
                       <Switch
                         edge="end"
-                        //   onChange={handleToggle("wifi")}
-                        //   checked={checked.indexOf("wifi") !== -1}
+                        onChange={() => setIsDuplicate(!isDuplicate)}
+                        checked={isDuplicate}
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
