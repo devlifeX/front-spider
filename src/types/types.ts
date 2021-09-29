@@ -1,133 +1,52 @@
-import { ImageDataLike } from "gatsby-plugin-image";
 import { AlertColor } from "@mui/material";
-
-export type BlogPostBySlugQuery = {
-  mdx?: MdxNode;
-};
-
-export type MdxListingQuery = {
-  allMdx: {
-    edges: { node: MdxNode }[];
-  };
-};
-
-export type MdxNode = {
-  body?: string;
-  excerpt?: string;
-  timeToRead?: number;
-
-  fields?: {
-    slug?: string;
-    pathName?: string;
-    route?: string;
-    url?: string;
-  };
-
-  frontmatter?: {
-    title?: string;
-    description?: string;
-    cover?: {
-      publicURL?: string;
-      childImageSharp?: { gatsbyImageData: ImageDataLike };
-    };
-    coverAlt?: string;
-
-    category?: string;
-    tags?: ReadonlyArray<string | undefined>;
-
-    datePublished?: string;
-    dateModified?: string;
-  };
-
-  internal?: {
-    content?: string;
-  };
-};
-
-// Post type unifies all post sources into one and is used in all components
-export type Post = {
-  title: string;
-
-  description?: string;
-  coverImg?: ImageDataLike;
-  coverImageUrl?: string;
-  coverImageAlt: string;
-
-  datePublished: Date;
-  dateModified: Date;
-
-  category?: string;
-  tags?: string[];
-
-  body?: string;
-  excerpt?: string;
-  timeToRead: number;
-  internalContent?: string;
-
-  slug: string;
-  route: string;
-  pathName: string;
-  url: string;
-
-  relatedPosts?: PostList;
-};
-
-export type PostList = Array<Post>;
-
-export type PostFromJson = {
-  title: string;
-
-  description?: string;
-  coverImg: ImageDataLike;
-  coverImageUrl?: string;
-  coverImageAlt: string;
-
-  datePublished: string;
-  dateModified: string;
-
-  category?: string;
-  tags?: string[];
-
-  excerpt?: string;
-  timeToRead: number;
-
-  slug: string;
-  route: string;
-  pathName: string;
-  url: string;
-
-  relatedPosts?: PostFromJsonList;
-};
-
-export type PostFromJsonList = Array<PostFromJson>;
-
-export type FeedPageMeta = {
-  current: number;
-  next?: number;
-  nextCount?: number;
-  prev?: number;
-  prevCount?: number;
-  posts: PostList;
-};
-
-export type FeedPageMetaFromJson = {
-  current: number;
-  next?: number;
-  nextCount?: number;
-  prev?: number;
-  prevCount?: number;
-  posts: PostFromJsonList;
-};
-
-export type PostPlaceholder = {
-  isPlaceholder: boolean;
-  key: string;
-};
-
-export type FeedList = Array<Post | PostPlaceholder>;
 
 export interface AlertProps {
   open: boolean;
   type?: AlertColor;
   message: string;
+}
+
+export interface SitemapResponseMeta {
+  key: string;
+  value: string;
+  type?: string;
+}
+
+export interface OptionsProps {
+  buttonShow: boolean;
+  childrenShow: boolean;
+}
+export interface SitemapResponse {
+  index: number;
+  total: number;
+  urls: any[];
+  done: boolean;
+}
+export interface State {
+  start: boolean;
+  isLoading: boolean;
+  progressbarValue: number;
+  options: OptionsProps;
+  res: SitemapResponse;
+  text: string;
+  count: number;
+  meta: SitemapResponseMeta[];
+}
+
+export enum ActionTypes {
+  SET_TEXT = "SET_TEXT",
+  SET_PROGRESSBAR = "SET_PROGRESSBAR",
+  SET_RESPONSE = "SET_RESPONSE",
+  SET_LOADING = "SET_LOADING",
+  SET_META = "SET_META",
+  SET_START = "SET_START",
+
+  UPDATE_META = "UPDATE_META",
+  UPDATE_COUNT = "UPDATE_COUNT",
+
+  RESET_ALL = "RESET_ALL",
+}
+export interface Action {
+  type: ActionTypes;
+  payload: any;
 }

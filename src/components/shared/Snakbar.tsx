@@ -12,7 +12,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 
 type MySnakbarProps = {
   open: boolean;
-  type: AlertColor;
+  type?: AlertColor;
   children: string;
 };
 export default function MySnakbar({ open, type, children }: MySnakbarProps) {

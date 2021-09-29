@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
+import { ActionTypes } from "../types";
 import MainLayout from "../components/Layout";
 import { SearchInput } from "../components/SearchInput";
 import { AlertProps } from "../types";
@@ -16,13 +17,16 @@ import { v4 as uuidv4 } from "uuid";
 
 import SkeletonDataGrid from "../components/Skeleton";
 import MySnakbar from "../components/shared/Snakbar";
+import Details from "../components/Details";
+import { useReducerWithActionCreator } from "../localReducer";
+
 const columns: GridColDef[] = [
   { field: "url", headerName: "لینک", minWidth: 405, type: "string" },
   {
     field: "relativeTime",
     headerName: "آخرین بروزرسانی",
     minWidth: 200,
-    type: "datetime",
+    type: "string",
   },
 ];
 
@@ -41,20 +45,14 @@ const SitemapExtractor = () => {
   /**
    * Socket
    */
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [socket, setSocket] = useState<any>(null);
-  const [progressbarValue, setProgressbarValue] = useState<number>(0);
-  const [alert, setAlert] = useState<AlertProps & { type: AlertColor }>({
+  const [alert, setAlert] = useState<AlertProps & { type?: AlertColor }>({
     open: false,
     type: "success",
     message: "",
   });
-  const [text, setText] = useState("");
-  const [options, setOptions] = useState({
-    buttonShow: true,
-    childrenShow: true,
-  });
-  const [response, setResponse] = useState<any[]>([]);
+
+  const [state, ac] = useReducerWithActionCreator();
 
   useEffect(() => {
     if (socket) return;
@@ -69,29 +67,38 @@ const SitemapExtractor = () => {
 
   useEffect(() => {
     const socketHandler = (message: any) => {
+      ac.setStart(true);
+
       if (message?.error) {
-        setIsLoading(false);
+        ac.setLoading(false);
         return setAlert({
           open: true,
           message: message?.error.message,
           type: "error",
         });
       }
+
       if (message?.done) {
+        ac.resetAfterDone();
         setAlert({
           open: true,
           message: `کار سایت‌مپ تموم شد`,
           type: "info",
         });
-        return;
-        setText("");
-        setIsLoading(false);
       }
       if (message) {
-        setProgressbarValue(message.value as number);
+        ac.setProgressbar(message.value as number);
+      }
+      if (message?.meta) {
+        ac.setMeta(message.meta);
       }
       if (message?.urls) {
-        setResponse((oldReponse) => [...oldReponse, ...message.urls]);
+        ac.updateCount(message.count as number);
+        ac.updateMeta({
+          key: "وضعیت",
+          value: message.done ? "تموم شد" : "درحال کار",
+        });
+        ac.setRes(message);
       }
     };
     if (socket) {
@@ -100,17 +107,19 @@ const SitemapExtractor = () => {
   }, [socket]);
 
   const onClickSearch = () => {
-    if (!text) return;
-    setResponse([]);
-    setProgressbarValue(0);
-    setIsLoading(true);
+    if (!state.text) return;
+
+    const text = state.text;
+    ac.resetAll();
+    ac.setText(text);
+    ac.setLoading(true);
+
     setAlert({
       open: false,
       message: "",
-      type: "info",
     });
 
-    socket.emit("sitemap", { url: text, isDuplicate: true });
+    socket.emit("sitemap", { url: state.text, isDuplicate: true });
   };
 
   const onClickOptions = () => {};
@@ -132,13 +141,13 @@ const SitemapExtractor = () => {
       >
         <SearchInput
           fns={{
-            text,
-            setText,
+            text: state.text,
+            setText: ac.setText,
             onClickSearch,
-            options,
+            options: state.options,
             onClickOptions,
-            isLoading,
-            progressbarValue,
+            isLoading: state.isLoading,
+            progressbarValue: state.progressbarValue,
           }}
         >
           <SearchInputOptions />
@@ -163,29 +172,30 @@ const SitemapExtractor = () => {
           استیجینگ هست؟ نگران نباش روی چرخ‌دنده کلیک کن.{" "}
         </Typography>
       </Box>
-      {isLoading && response.length <= 0 && <SkeletonDataGrid />}
-      {/*  {response.length > 0 && (
-        <DataGrid
-          columns={columns}
-          rows={response}
-          rowsCount={response.length}
-        />
-      )} */}
-      {response.length > 0 && (
-        <div style={{ height: 500, width: "100%", direction: "ltr" }}>
-          <DataGrid
-            rows={response}
-            columns={columns}
-            pageSize={25}
-            rowsPerPageOptions={[25, 50, 100]}
-            checkboxSelection
-            pagination
-            getRowId={handleGetRowId}
-            components={{
-              Toolbar: CustomToolbar,
-            }}
+
+      {state.isLoading && !state.start && <SkeletonDataGrid />}
+
+      {state.start && (
+        <>
+          <Details
+            meta={state.meta}
+            extraMeta={[{ key: "تعدادکل", value: state.count.toString() }]}
           />
-        </div>
+          <div style={{ height: 500, width: "100%", direction: "ltr" }}>
+            <DataGrid
+              rows={state.res.urls}
+              columns={columns}
+              pageSize={25}
+              rowsPerPageOptions={[25, 50, 100]}
+              checkboxSelection
+              pagination
+              getRowId={handleGetRowId}
+              components={{
+                Toolbar: CustomToolbar,
+              }}
+            />
+          </div>
+        </>
       )}
     </MainLayout>
   );
