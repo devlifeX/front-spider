@@ -9,6 +9,8 @@ import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
 import {
   DataGrid,
   GridColDef,
+  GridFilterModel,
+  GridLinkOperator,
   GridToolbarContainer,
   GridToolbarExport,
 } from "@mui/x-data-grid";
@@ -19,6 +21,13 @@ import MySnakbar from "../components/shared/Snakbar";
 import Details from "../components/Details";
 import { useReducerWithActionCreator } from "../localReducer";
 
+import { makeStyles } from "@mui/styles";
+const useStyles = makeStyles({
+  footerContainer: {
+    direction: "rtl",
+  },
+});
+
 const columns: GridColDef[] = [
   { field: "url", headerName: "لینک", minWidth: 405, type: "string" },
   {
@@ -28,6 +37,18 @@ const columns: GridColDef[] = [
     type: "string",
   },
 ];
+
+const filterModel: GridFilterModel = {
+  items: [
+    {
+      id: 1,
+      columnField: "relativeTime",
+      operatorValue: "contains",
+      value: "نامشخص",
+    },
+  ],
+  linkOperator: GridLinkOperator.Or,
+};
 
 function CustomToolbar() {
   return (
@@ -41,6 +62,10 @@ function CustomToolbar() {
 
 const SitemapExtractor = () => {
   const config = useConfig();
+  /**
+   * Style
+   */
+  const gridClasses = useStyles();
   /**
    * Socket
    */
@@ -191,12 +216,15 @@ const SitemapExtractor = () => {
           />
           <div style={{ height: 500, width: "100%", direction: "ltr" }}>
             <DataGrid
+              classes={gridClasses}
+              // filterModel={filterModel}
               rows={state.res.urls}
               columns={columns}
-              pageSize={25}
-              rowsPerPageOptions={[25, 50, 100]}
+              pageSize={50}
+              // rowsPerPageOptions={[50, 100, 200]}
               checkboxSelection
               pagination
+              density="compact"
               getRowId={handleGetRowId}
               components={{
                 Toolbar: CustomToolbar,
