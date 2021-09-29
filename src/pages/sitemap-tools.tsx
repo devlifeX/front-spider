@@ -77,6 +77,11 @@ const SitemapExtractor = () => {
         });
       }
       if (message?.done) {
+        return setAlert({
+          open: true,
+          message: `کار سایت‌مپ تموم شد`,
+          type: "info",
+        });
         setText("");
         setIsLoading(false);
       }
