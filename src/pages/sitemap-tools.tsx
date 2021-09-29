@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MainLayout from "../components/Layout";
 import { SearchInput } from "../components/SearchInput";
 import { AlertProps } from "../types";
-import { Box, Typography, Alert, Snackbar } from "@mui/material";
+import { Box, Typography, Alert, AlertColor, Snackbar } from "@mui/material";
 import { io } from "socket.io-client";
 import { useConfig } from "../config";
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
@@ -17,11 +17,12 @@ import { v4 as uuidv4 } from "uuid";
 import SkeletonDataGrid from "../components/Skeleton";
 import MySnakbar from "../components/shared/Snakbar";
 const columns: GridColDef[] = [
-  { field: "url", headerName: "لینک", minWidth: 405 },
+  { field: "url", headerName: "لینک", minWidth: 405, type: "string" },
   {
     field: "relativeTime",
     headerName: "آخرین بروزرسانی",
     minWidth: 200,
+    type: "datetime",
   },
 ];
 
@@ -43,7 +44,7 @@ const SitemapExtractor = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [socket, setSocket] = useState<any>(null);
   const [progressbarValue, setProgressbarValue] = useState<number>(0);
-  const [alert, setAlert] = useState<AlertProps>({
+  const [alert, setAlert] = useState<AlertProps & { type: AlertColor }>({
     open: false,
     type: "success",
     message: "",
@@ -77,11 +78,12 @@ const SitemapExtractor = () => {
         });
       }
       if (message?.done) {
-        return setAlert({
+        setAlert({
           open: true,
           message: `کار سایت‌مپ تموم شد`,
           type: "info",
         });
+        return;
         setText("");
         setIsLoading(false);
       }
@@ -105,6 +107,7 @@ const SitemapExtractor = () => {
     setAlert({
       open: false,
       message: "",
+      type: "info",
     });
 
     socket.emit("sitemap", { url: text, isDuplicate: true });

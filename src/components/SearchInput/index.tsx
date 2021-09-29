@@ -31,7 +31,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         display: "flex",
         alignItems: "center",
         width: { lg: "50%", xs: "100%" },
-        zIndex: 100,
+        zIndex: 1000,
       }}
     >
       <InputBase
