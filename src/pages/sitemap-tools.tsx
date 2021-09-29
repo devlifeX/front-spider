@@ -15,7 +15,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 
 import SkeletonDataGrid from "../components/Skeleton";
-
+import MySnakbar from "../components/shared/Snakbar";
 const columns: GridColDef[] = [
   { field: "url", headerName: "لینک", minWidth: 405 },
   {
@@ -135,7 +135,11 @@ const SitemapExtractor = () => {
         >
           <SearchInputOptions />
         </SearchInput>
-        {alert.open && <Alert severity={alert.type}>{alert.message}</Alert>}
+        {alert.open && (
+          <MySnakbar open={alert.open} type={alert.type}>
+            {alert.message}
+          </MySnakbar>
+        )}
         <Typography
           variant="h5"
           sx={{ m: "15px 0 15px 0", textAlign: "center" }}
