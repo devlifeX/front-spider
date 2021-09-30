@@ -20,7 +20,7 @@ import SkeletonDataGrid from "../components/Skeleton";
 import MySnakbar from "../components/shared/Snakbar";
 import Details from "../components/Details";
 import { useReducerWithActionCreator } from "../localReducer";
-
+import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
   footerContainer: {
@@ -29,12 +29,25 @@ const useStyles = makeStyles({
 });
 
 const columns: GridColDef[] = [
-  { field: "url", headerName: "لینک", minWidth: 405, type: "string" },
+  {
+    field: "url",
+    headerName: "لینک",
+    minWidth: 405,
+    type: "string",
+    editable: true,
+  },
   {
     field: "relativeTime",
     headerName: "آخرین بروزرسانی",
-    minWidth: 200,
+    minWidth: 110,
     type: "string",
+    sortable: false,
+  },
+  {
+    field: "lastmod",
+    headerName: "آخرین بروزرسانی(میلادی)",
+    minWidth: 205,
+    type: "date",
   },
   {
     field: "changefreq",
@@ -51,17 +64,25 @@ const filterModel: GridFilterModel = {
       id: 1,
       columnField: "relativeTime",
       operatorValue: "contains",
-      value: "نامشخص",
+      value: "ساعت",
     },
   ],
   linkOperator: GridLinkOperator.Or,
 };
 
+let filter: GridFilterModel = { items: [] };
+
 function CustomToolbar() {
   return (
-    <div style={{ direction: "ltr" }}>
+    <div style={{ direction: "rtl" }}>
       <GridToolbarContainer>
         <GridToolbarExport />
+        {/*   <Button onClick={() => (filter = filterModel)}>
+          نمایش تغییرات امروز
+        </Button>
+        <Button onClick={() => (filter = { items: [] })}>
+          بازنشانی همه فیلترها{" "}
+        </Button> */}
       </GridToolbarContainer>
     </div>
   );
@@ -224,7 +245,6 @@ const SitemapExtractor = () => {
           <div style={{ height: 500, width: "100%", direction: "ltr" }}>
             <DataGrid
               classes={gridClasses}
-              // filterModel={filterModel}
               rows={state.res.urls}
               columns={columns}
               pageSize={50}
