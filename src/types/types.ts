@@ -27,6 +27,11 @@ export interface BasicAuthProps {
   basicAuthUsername: string;
   basicAuthPassword: string;
 }
+
+export interface MyError {
+  hasError: boolean;
+  errorMessage: string;
+}
 export interface State {
   start: boolean;
   isLoading: boolean;
@@ -38,6 +43,7 @@ export interface State {
   meta: SitemapResponseMeta[];
   basicAuth: BasicAuthProps;
   isDuplicate: boolean;
+  error: MyError;
 }
 
 export enum ActionTypes {
@@ -47,6 +53,7 @@ export enum ActionTypes {
   SET_LOADING = "SET_LOADING",
   SET_META = "SET_META",
   SET_START = "SET_START",
+  SET_ERROR = "SET_ERROR",
   SET_IS_DUPLICATE = "SET_IS_DUPLICATE",
 
   UPDATE_BASICAUTH = "UPDATE_BASICAUTH",

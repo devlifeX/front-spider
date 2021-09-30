@@ -1,5 +1,5 @@
 import { Dispatch, useReducer } from "react";
-import { State, Action, ActionTypes } from "../types";
+import { State, Action, ActionTypes, MyError } from "../types";
 
 export function init(): State {
   return {
@@ -25,6 +25,10 @@ export function init(): State {
       basicAuthPassword: "",
     },
     isDuplicate: true,
+    error: {
+      hasError: false,
+      errorMessage: "",
+    },
   };
 }
 
@@ -41,6 +45,9 @@ export function reducer(state: State, action: Action) {
 
     case ActionTypes.SET_IS_DUPLICATE:
       return { ...state, isDuplicate: action.payload };
+
+    case ActionTypes.SET_ERROR:
+      return { ...state, error: action.payload };
 
     case ActionTypes.SET_RESPONSE:
       const urls = [...state.res.urls, ...action.payload.urls];
@@ -73,6 +80,7 @@ interface ActionCreator {
   setProgressbar: (payload: number) => void;
   setLoading: (payload: boolean) => void;
   setStart: (payload: boolean) => void;
+  setError: (payload: MyError) => void;
   setIsDuplicate: (payload: boolean) => void;
   setRes: (payload: any) => void;
   setMeta: (payload: any) => void;
@@ -102,6 +110,9 @@ const actionCreator = (dispatch: Dispatch<Action>) => () => ({
     dispatch({ type: ActionTypes.SET_RESPONSE, payload }),
 
   setMeta: (payload: any) => dispatch({ type: ActionTypes.SET_META, payload }),
+
+  setError: (payload: MyError) =>
+    dispatch({ type: ActionTypes.SET_ERROR, payload }),
 
   updateBasicAuth: (payload: any) =>
     dispatch({ type: ActionTypes.UPDATE_BASICAUTH, payload }),

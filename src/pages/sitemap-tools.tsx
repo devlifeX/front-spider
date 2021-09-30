@@ -121,11 +121,15 @@ const SitemapExtractor = () => {
     const socketHandler = (message: any) => {
       ac.setStart(true);
 
-      if (message?.error) {
+      if (message?.hasError) {
         ac.setLoading(false);
+        ac.setError({
+          hasError: message?.hasError,
+          errorMessage: message?.errorMessage,
+        });
         return setAlert({
           open: true,
-          message: message?.error.message,
+          message: message?.errorMessage,
           type: "error",
         });
       }
@@ -243,7 +247,7 @@ const SitemapExtractor = () => {
 
       {state.isLoading && !state.start && <SkeletonDataGrid />}
 
-      {state.start && (
+      {!state.error.hasError && state.start && (
         <>
           <Details
             meta={state.meta}
