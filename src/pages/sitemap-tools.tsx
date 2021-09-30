@@ -15,7 +15,7 @@ import {
   GridToolbarExport,
 } from "@mui/x-data-grid";
 import { v4 as uuidv4 } from "uuid";
-
+import { isValidateURL } from "../utils";
 import SkeletonDataGrid from "../components/Skeleton";
 import MySnakbar from "../components/shared/Snakbar";
 import Details from "../components/Details";
@@ -160,6 +160,13 @@ const SitemapExtractor = () => {
 
   const onClickSearch = () => {
     if (!state.text) return;
+    if (!isValidateURL(state.text)) {
+      return setAlert({
+        open: true,
+        message: "لینک وارد شده صحیح نیست",
+        type: "error",
+      });
+    }
 
     const text = state.text;
     ac.resetAll();
