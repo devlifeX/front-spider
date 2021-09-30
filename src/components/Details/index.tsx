@@ -15,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
 type MainLayoutProps = {
   meta: SitemapResponseMeta[];
   extraMeta: SitemapResponseMeta[];
-  //   children?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 const feedBulder = (metas: SitemapResponseMeta[]) => {
@@ -41,24 +41,31 @@ const feedBulder = (metas: SitemapResponseMeta[]) => {
   });
 };
 
-const Details = ({ meta, extraMeta }: MainLayoutProps): JSX.Element => {
+const Details = ({
+  meta,
+  extraMeta,
+  children,
+}: MainLayoutProps): JSX.Element => {
   return (
-    <Box
-      sx={{
-        minWidth: "100%",
-        p: 2,
-        m: "15px 0",
-        borderRadius: "4px",
-        display: "flex",
-        border: "solid 1px #e0e0e0",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Stack spacing={1} direction={{ zero: "column", sm: "row" }}>
-        {feedBulder([...meta, ...extraMeta])}
-      </Stack>
-    </Box>
+    <>
+      {children}
+      <Box
+        sx={{
+          minWidth: "100%",
+          p: 2,
+          m: "15px 0",
+          borderRadius: "4px",
+          display: "flex",
+          border: "solid 1px #e0e0e0",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Stack spacing={1} direction={{ zero: "column", sm: "row" }}>
+          {feedBulder([...meta, ...extraMeta])}
+        </Stack>
+      </Box>
+    </>
   );
 };
 

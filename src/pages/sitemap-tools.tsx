@@ -6,6 +6,7 @@ import { Box, Typography, AlertColor } from "@mui/material";
 import { io } from "socket.io-client";
 import { useConfig } from "../config";
 import SearchInputOptions from "../components/SearchInput/SearchInputOptions";
+import SeoCard from "../components/SeoCard";
 import {
   DataGrid,
   GridColDef,
@@ -252,7 +253,9 @@ const SitemapExtractor = () => {
           <Details
             meta={state.meta}
             extraMeta={[{ key: "تعدادکل", value: state.count.toString() }]}
-          />
+          >
+            <SeoCard />
+          </Details>
           <div style={{ height: 500, width: "100%", direction: "ltr" }}>
             <DataGrid
               classes={gridClasses}
