@@ -36,6 +36,13 @@ const columns: GridColDef[] = [
     minWidth: 200,
     type: "string",
   },
+  {
+    field: "changefreq",
+    headerName: "بازه تغییر",
+    minWidth: 105,
+    type: "string",
+  },
+  { field: "priority", headerName: "الویت", minWidth: 105, type: "string" },
 ];
 
 const filterModel: GridFilterModel = {
