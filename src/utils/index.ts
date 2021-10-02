@@ -1,5 +1,16 @@
 import R from "ramda";
 
+export const isURL = (str: string) => {
+  try {
+    const myURL = new URL(str);
+    if (myURL.href) {
+      return true;
+    } else return false;
+  } catch {
+    return false;
+  }
+};
+
 export const isValidateURL = (url: any): boolean => {
   if (Number(url) == url || R.isNil(url)) {
     return false;
@@ -16,17 +27,6 @@ export const isValidateURL = (url: any): boolean => {
       return `https://${url}`;
     }
     return url;
-  };
-
-  const isURL = (str: string) => {
-    try {
-      const myURL = new URL(str);
-      if (myURL.href) {
-        return true;
-      } else return false;
-    } catch {
-      return false;
-    }
   };
 
   const test = R.pipe(sanitize, httpsURL, isURL);

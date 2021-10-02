@@ -18,6 +18,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import PasswordIcon from "@mui/icons-material/Password";
+import LinkIcon from "@mui/icons-material/Link";
 const Menu = () => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -60,6 +61,13 @@ const Menu = () => {
                   <ListItemText>ابزار سایت‌مپ</ListItemText>
                 </MenuItem>
               </MenuList>
+
+              <MenuItem component={Link} to="/utm">
+                <ListItemIcon>
+                  <LinkIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>ساخت UTM</ListItemText>
+              </MenuItem>
 
               <MenuItem component={Link} to="/password-generator">
                 <ListItemIcon>
