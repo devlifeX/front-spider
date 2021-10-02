@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Dana";
   font-style: normal;
-  font-display: "auto";
+  font-display: swap;
   font-weight: 500;
   src: local("Dana"), local("dana-fanum"),
     url("../static/fonts/dana-fanum-regular.woff2") format("woff2"),

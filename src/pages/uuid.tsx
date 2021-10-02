@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainLayout from "../components/Layout";
 
-import { Box, Typography, Stack, Link, Paper } from "@mui/material";
+import { Box, Typography, Stack, Link } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import UUID from "../components/UUID";
 import CopyButton from "../components/CopyButton";
 const UUIDGenerator = () => {
-  const [v4, setV4] = useState(uuidv4());
+  const [v4, setV4] = useState("");
+
+  const init = () => {
+    setV4(uuidv4());
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
 
   const v4Handler = () => {
     setV4(uuidv4());
