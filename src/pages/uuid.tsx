@@ -5,6 +5,8 @@ import { Box, Typography, Stack, Link } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import UUID from "../components/UUID";
 import CopyButton from "../components/CopyButton";
+import { Helmet } from "react-helmet";
+
 const UUIDGenerator = () => {
   const [v4, setV4] = useState("");
 
@@ -21,6 +23,13 @@ const UUIDGenerator = () => {
   };
   return (
     <MainLayout>
+      <Helmet>
+        <title>ساخت UUID آنلاین</title>
+        <meta
+          name="description"
+          content="UUID رو به صورت آنلاین بسازید و استفاده کنید، با قابلیل ساخت UUID گروهی"
+        />
+      </Helmet>
       <Box
         sx={{
           display: "flex",

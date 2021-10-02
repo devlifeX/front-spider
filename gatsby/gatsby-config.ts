@@ -68,12 +68,12 @@ const gatsbyConfig = (userConfig: SiteConfig): GatsbyConfig => {
       "gatsby-transformer-sharp",
       "gatsby-plugin-image",
       "gatsby-remark-images",
-      /* {
+      {
         resolve: "gatsby-plugin-google-gtag",
         options: {
-          trackingIds: [config.website.googleAnalyticsId],
+          trackingIds: ["G-E9M62MNC6T"],
         },
-      }, */
+      },
       {
         resolve: "gatsby-plugin-nprogress",
         options: {
