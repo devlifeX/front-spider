@@ -51,6 +51,29 @@ const UUIDGenerator = () => {
         </Stack>
       </Box>
       <UUID />
+
+      <Stack sx={{ p: 2, m: 2 }}>
+        <div>
+          <Typography sx={{ fontSize: "1.5rem" }} variant="h2">
+            UUID نسخه چهار چیست؟
+          </Typography>
+          <Typography sx={{ m: "15px 0", textAlign: "center" }} component="p">
+            مخفف universally unique identifier است. که بر اساس اعداد و حروف
+            تصادفی ساخته می‌شود. شما میتونید به عنوان یه رشته منحصر به فرد ازش
+            استفاده کنید
+          </Typography>
+        </div>
+        <div>
+          <Typography sx={{ fontSize: "1.5rem" }} variant="h2">
+            UUID نسخه یک چیست؟
+          </Typography>
+          <Typography sx={{ m: "15px 0", textAlign: "center" }} component="p">
+            مخفف universally unique identifier است. که از timestamp و MAC
+            Address برای ساخت استفاده می‌کند شما میتونید به عنوان یه رشته منحصر
+            به‌فرد ازش استفاده کنید
+          </Typography>
+        </div>
+      </Stack>
     </MainLayout>
   );
 };
