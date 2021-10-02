@@ -27,7 +27,7 @@ const UUIDGenerator = () => {
         <title>ساخت UUID آنلاین</title>
         <meta
           name="description"
-          content="UUID رو به صورت آنلاین بسازید و استفاده کنید، با قابلیل ساخت UUID گروهی"
+          content="UUID رو به صورت آنلاین بسازید و استفاده کنید، با قابلیت ساخت UUID گروهی"
         />
       </Helmet>
       <Box

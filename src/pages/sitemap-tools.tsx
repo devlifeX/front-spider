@@ -21,7 +21,7 @@ import SkeletonDataGrid from "../components/Skeleton";
 import MySnakbar from "../components/shared/Snakbar";
 import Details from "../components/Details";
 import { useReducerWithActionCreator } from "../localReducer";
-import { Button } from "@mui/material";
+import { Helmet } from "react-helmet";
 import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
   footerContainer: {
@@ -198,6 +198,13 @@ const SitemapExtractor = () => {
 
   return (
     <MainLayout>
+      <Helmet>
+        <title>ابزار سایت‌مپ</title>
+        <meta
+          name="description"
+          content="سایت‌مپ خود را مشاهده، برسی و لینک‌های آن را استخراج کنید. "
+        />
+      </Helmet>
       <Box
         sx={{
           display: "flex",
