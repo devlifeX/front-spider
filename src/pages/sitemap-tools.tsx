@@ -40,7 +40,7 @@ const columns: GridColDef[] = [
   {
     field: "relativeTime",
     headerName: "آخرین بروزرسانی",
-    minWidth: 110,
+    minWidth: 130,
     type: "string",
     sortable: false,
   },

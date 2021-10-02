@@ -16,7 +16,7 @@ import HandymanIcon from "@mui/icons-material/Handyman";
 import { Link } from "gatsby";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
-
+import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 const Menu = () => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -52,13 +52,6 @@ const Menu = () => {
           <Grow {...TransitionProps} style={{ transformOrigin: "center top" }}>
             <Paper sx={{ width: 180, maxWidth: "100%" }}>
               <MenuList>
-                <MenuItem component={Link} to="/seo-checker">
-                  <ListItemIcon>
-                    <InsertChartIcon fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText>برسی سئو</ListItemText>
-                </MenuItem>
-
                 <MenuItem component={Link} to="/sitemap-tools">
                   <ListItemIcon>
                     <HandymanIcon fontSize="small" />
@@ -66,6 +59,20 @@ const Menu = () => {
                   <ListItemText>ابزار سایت‌مپ</ListItemText>
                 </MenuItem>
               </MenuList>
+
+              <MenuItem component={Link} to="/uuid">
+                <ListItemIcon>
+                  <PlaylistAddCheckIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>ساخت UUID</ListItemText>
+              </MenuItem>
+
+              <MenuItem component={Link} to="/seo-checker">
+                <ListItemIcon>
+                  <InsertChartIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>برسی سئو</ListItemText>
+              </MenuItem>
             </Paper>
           </Grow>
         )}
