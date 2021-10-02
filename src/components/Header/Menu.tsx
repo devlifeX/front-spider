@@ -17,6 +17,7 @@ import { Link } from "gatsby";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
+import PasswordIcon from "@mui/icons-material/Password";
 const Menu = () => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -59,6 +60,13 @@ const Menu = () => {
                   <ListItemText>ابزار سایت‌مپ</ListItemText>
                 </MenuItem>
               </MenuList>
+
+              <MenuItem component={Link} to="/password-generator">
+                <ListItemIcon>
+                  <PasswordIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>تولید کلمه‌عبور</ListItemText>
+              </MenuItem>
 
               <MenuItem component={Link} to="/uuid">
                 <ListItemIcon>
