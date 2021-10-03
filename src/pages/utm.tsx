@@ -143,6 +143,7 @@ const UTMGenerator = () => {
               underline="none"
               href="https://support.google.com/analytics/answer/1033863"
               target="_blank"
+              rel="noopener noreferrer"
             >
               به این صفحه{" "}
             </Link>

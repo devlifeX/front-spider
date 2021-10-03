@@ -18,7 +18,13 @@ const Header = () => {
             <Toolbar variant="dense">
               <Typography component="div" sx={{ flexGrow: 1 }}>
                 <Link to="/">
-                  <MyIMG width="150px" src="/images/logo.svg" alt="" />
+                  <MyIMG
+                    width="150px"
+                    src="/images/logo.svg"
+                    width="150"
+                    height="27"
+                    alt=""
+                  />
                 </Link>
               </Typography>
               <Menu />
