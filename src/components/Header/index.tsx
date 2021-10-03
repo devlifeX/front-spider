@@ -20,9 +20,8 @@ const Header = () => {
                 <Link to="/">
                   <MyIMG
                     width="150px"
+                    height="27px"
                     src="/images/logo.svg"
-                    width="150"
-                    height="27"
                     alt=""
                   />
                 </Link>
