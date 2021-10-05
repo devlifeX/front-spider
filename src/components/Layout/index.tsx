@@ -22,6 +22,11 @@ const MainLayout = ({ children }: MainLayoutProps): JSX.Element => (
       sx={{
         minHeight: "100vh",
         minWidth: "100%",
+        backgroundColor: "primary.light",
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+        justifyContent: "space-between",
       }}
     >
       <Header />

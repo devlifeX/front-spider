@@ -45,8 +45,8 @@ export const themeOptions: ThemeOptions = {
     background: {
       default: "#f8f9fa",
     },
-    primary: { main: "#0e1e25", contrastText: "#7e878b" },
-    secondary: { main: "#f8f9fa" },
+    primary: { main: "#0e1e25", light: "#f7fcfc", contrastText: "#7e878b" },
+    secondary: { main: "#15847b", light: "#00ad9f" },
   },
   breakpoints: {
     values: {
