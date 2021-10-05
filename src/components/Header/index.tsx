@@ -1,37 +1,76 @@
 import * as React from "react";
-import { AppBar, Toolbar, Typography, Box } from "@mui/material";
+import { ThemeOptions, ListItemIcon, Toolbar, IconButton } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 import { Link } from "gatsby";
 
-import { LayoutWidthContainer, MyIMG } from "../shared";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import ShareIcon from "@mui/icons-material/Share";
 
-import Menu from "./Menu";
+const HeaderTag = styled("header")(
+  ({ theme }) => `
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: ${theme.palette.primary.main}
+`
+);
 
-import InternetConnectionCheck from "../InternetConnectionCheck";
+const HeaderContainer = styled("div")(
+  ({ theme }) => `
+  width: 100%;
+  
+  max-width: 1200px;
+  height: 48px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  `
+);
+
+const CustomToolbar = styled(Toolbar)(
+  ({ theme }) => `
+  padding: 0;
+  color: ${theme.palette.primary.contrastText}
+    `
+);
+
+const MyIMG = styled("img")`
+  display: block;
+  height: 48px;
+  width: 150px;
+`;
+
 const Header = () => {
   return (
-    <>
-      <InternetConnectionCheck />
-      <AppBar sx={{ backgroundColor: "primary.contrastText" }}>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <LayoutWidthContainer>
-            <Toolbar variant="dense">
-              <Typography component="div" sx={{ flexGrow: 1 }}>
-                <Link to="/">
-                  <MyIMG
-                    width="150px"
-                    height="27px"
-                    src="/images/logo.svg"
-                    alt=""
-                  />
-                </Link>
-              </Typography>
-              <Menu />
-            </Toolbar>
-          </LayoutWidthContainer>
-        </Box>
-      </AppBar>
-    </>
+    <HeaderTag>
+      <HeaderContainer>
+        <Link to="/">
+          <MyIMG width="150px" height="48px" src="/images/logo.svg" alt="" />
+        </Link>
+        <CustomToolbar>
+          <IconButton
+            size="large"
+            // aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <DarkModeIcon />
+          </IconButton>
+
+          <IconButton
+            size="large"
+            // aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <ShareIcon />
+          </IconButton>
+        </CustomToolbar>
+      </HeaderContainer>
+    </HeaderTag>
   );
 };
 

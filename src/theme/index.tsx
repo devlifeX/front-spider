@@ -40,12 +40,12 @@ declare module "@mui/material/styles" {
 // Materil UI Theme setup
 export const themeOptions: ThemeOptions = {
   ...typography,
-  direction: "rtl",
+  direction: "ltr",
   palette: {
     background: {
       default: "#f8f9fa",
     },
-    primary: { main: blue[500] },
+    primary: { main: "#0e1e25", contrastText: "#7e878b" },
     secondary: { main: "#f8f9fa" },
   },
   breakpoints: {
@@ -62,13 +62,13 @@ type ThemeProps = {
 };
 
 const ThemeProvider = ({ children }: ThemeProps): JSX.Element => (
-  <CacheProvider value={cacheRtl}>
-    <MuiThemeProvider theme={createTheme(themeOptions)}>
-      <CssReset />
+  // <CacheProvider value={cacheRtl}>
+  <MuiThemeProvider theme={createTheme(themeOptions)}>
+    <CssReset />
 
-      {children}
-    </MuiThemeProvider>
-  </CacheProvider>
+    {children}
+  </MuiThemeProvider>
+  // </CacheProvider>
 );
 
 export default ThemeProvider;

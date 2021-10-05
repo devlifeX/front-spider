@@ -22,11 +22,6 @@ const MainLayout = ({ children }: MainLayoutProps): JSX.Element => (
       sx={{
         minHeight: "100vh",
         minWidth: "100%",
-        pt: 12,
-
-        display: "grid",
-        gridTemplateColumns: "100%",
-        gap: { zero: 8, sm: 10 },
       }}
     >
       <Header />
