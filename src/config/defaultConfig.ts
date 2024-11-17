@@ -24,8 +24,8 @@ const config: SiteConfig = {
   basePath: ".",
   backendURL:
     process.env.NODE_ENV === "production"
-      ? "185.7.212.85"
-      : "http://localhost:3003",
+      ? "http://185.7.212.85:3000"
+      : "http://localhost:3000",
 };
 
 export default config;
