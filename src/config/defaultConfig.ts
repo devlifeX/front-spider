@@ -24,7 +24,7 @@ const config: SiteConfig = {
   basePath: ".",
   backendURL:
     process.env.NODE_ENV === "production"
-      ? "http://185.7.212.85:3000"
+      ? "https://ws.devlife.ir/"
       : "http://localhost:3000",
 };
 
