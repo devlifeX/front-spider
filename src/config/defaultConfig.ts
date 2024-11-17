@@ -24,7 +24,7 @@ const config: SiteConfig = {
   basePath: ".",
   backendURL:
     process.env.NODE_ENV === "production"
-      ? "https://devlifex.herokuapp.com"
+      ? "185.7.212.85"
       : "http://localhost:3003",
 };
 
